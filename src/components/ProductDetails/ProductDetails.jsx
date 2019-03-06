@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import {
   Container,
   Row,
@@ -23,7 +24,6 @@ function ProductDetails({ match }) {
   const handleQuantityChange = event => {
     setQuantity(event.target.value);
   };
-
 
   const handleAddToCart = e => {
     e.preventDefault();
@@ -58,9 +58,11 @@ function ProductDetails({ match }) {
               />
             <button 
               type="submit"
-              disabled = {addCartButton? true : null}
             >
-              {addCartButton ? "Added to Cart" : "Add to Cart"}
+              {addCartButton ? 
+                <Link to="/cart">Go to Shopping Cart</Link>
+                : 
+                "Add to Cart"}
             </button>
           </form>
          
