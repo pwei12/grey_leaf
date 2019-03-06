@@ -95,7 +95,7 @@ export function getProductById(id) {
     return productList.find(product => product.id === id)
 }
 
-export function addToCartById(id, quantity) {
+export function addToCart(id, quantity) {
     const product = productList.find(product => product.id === id);
     const price = product.price*quantity;
     
@@ -106,5 +106,9 @@ export function addToCartById(id, quantity) {
         price,
         imageUrl: product.imageUrl
     }
-    return cartList.push(addedProduct);
+    cartList.push(addedProduct)
+}
+
+export function getCartList() {
+    return cartList;
 }

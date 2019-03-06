@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -7,54 +7,63 @@ import {
   Button,
   InputGroup,
   Form
-} from 'react-bootstrap';
-import { getProductById } from '../../services/productListService'
+} from "react-bootstrap";
+import {
+  getProductById,
+  addToCart
+} from "../../services/productListService";
 
-function ProductDetails({match}) {
+function ProductDetails({ match }) {
+  const [quantity, setQuantity] = useState(1);
   const product = getProductById(match.params.id);
-  const { name, price, description, imageUrl } = product;
-  const [quantity, setQuantity] = useState(0);
+  const { id, name, price, description, imageUrl } = product;
+
   const handleQuantityChange = event => {
     setQuantity(event.target.value);
-  }
+  };
+
+
+  const handleAddToCart = e => {
+    e.preventDefault();
+    addToCart(id, quantity)
+  };
 
   return (
     <Container>
       <Row className="justify-content-md-around">
-        <Col xs={12} sm={6} md={4} lg={4}> 
-        <Image src={imageUrl} thumbnail/>
+        <Col xs={12} sm={6} md={4} lg={4}>
+          <Image src={imageUrl} thumbnail />
         </Col>
-        <Col xs={12} sm={6} md={8} lg={8}> 
+        <Col xs={12} sm={6} md={8} lg={8}>
           <h3>{name}</h3>
-          <p>{`\$${price.toFixed(2)}`}</p>
+          <p>${`${price.toFixed(2)}`}</p>
           <p>{description}</p>
 
-          
-
-          <Form>
-            <Form.Group as={Row} 
-            // controlId="formHorizontalEmail"
+          <form 
+            name="quantity"
+            onSubmit={handleAddToCart}
             >
-              <Form.Label column sm={2}>
-                Quantity:
-    </Form.Label>
-              <Col sm={10}>
-                <Form.Control type="number" min="1" placeholder="1" onChange={handleQuantityChange} />
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row}>
-              <Col sm={{ span: 10, offset: 2 }}>
-                <Button type="submit">Sign in</Button>
-              </Col>
-            </Form.Group>
-          </Form>
+            <label htmlFor="quantity">
+              Quantity
+            </label>
+            <input 
+              id="quantity"
+              type="number" 
+              placeholder="1"
+              onChange={handleQuantityChange}
+              value={quantity}
+              />
+            <button 
+              type="submit"
+            >
+              Add to Cart
+            </button>
+          </form>
+         
         </Col>
       </Row>
-      
     </Container>
-  
-  )
+  );
 }
 
-export default ProductDetails
+export default ProductDetails;
