@@ -15,6 +15,8 @@ import {
 
 function ProductDetails({ match }) {
   const [quantity, setQuantity] = useState(1);
+  const [addCartButton, setAddCartButton] = useState(false);
+
   const product = getProductById(match.params.id);
   const { id, name, price, description, imageUrl } = product;
 
@@ -25,7 +27,8 @@ function ProductDetails({ match }) {
 
   const handleAddToCart = e => {
     e.preventDefault();
-    addToCart(id, quantity)
+    setAddCartButton(!addCartButton);
+    addToCart(id, quantity);
   };
 
   return (
@@ -55,8 +58,9 @@ function ProductDetails({ match }) {
               />
             <button 
               type="submit"
+              disabled = {addCartButton? true : null}
             >
-              Add to Cart
+              {addCartButton ? "Added to Cart" : "Add to Cart"}
             </button>
           </form>
          
