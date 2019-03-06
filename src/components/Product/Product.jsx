@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     Card,
     Button
 } from 'react-bootstrap';
 
-// function Product({ name, price, imageUrl, description }) {
 function Product({product}) {
     const { name, price, imageUrl, description } = product;
   return (
@@ -12,20 +12,19 @@ function Product({product}) {
         <Card.Img 
             variant="top" 
             src={imageUrl}
-            // src="assets/AllProducts/greenZebraSoap.jpg" 
             alt={name}
-            // alt = "greenzebra"
         />
         <Card.Body>
-            <Card.Title>{name}</Card.Title>
-            <Card.Text>{price}</Card.Text>
-            <Card.Text>
-                {description}
-                {/* "This soap is made of" */}
-            </Card.Text>                                            
-            <Button variant="primary">
-                Add to Cart
-            </Button>
+            <Link to="/shop/product">
+                <Card.Title>{name}</Card.Title>
+                <Card.Text>${price.toFixed(2)}</Card.Text>
+                <Card.Text>
+                    {description}
+                </Card.Text>                                            
+                <Button variant="primary">
+                    Add to Cart
+                </Button>
+            </Link>
         </Card.Body>
       </Card>
   )

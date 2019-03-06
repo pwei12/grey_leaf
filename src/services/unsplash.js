@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//Axios allows definition of a base instance in which we can define a URL and any other configuration elements.
 const unsplash = axios.create({
     baseURL: "https://api.unsplash.com",
     headers: {
@@ -9,6 +10,5 @@ const unsplash = axios.create({
 
 export const searchPhotos = async (searchTerm) => {
     const response = await unsplash.get(`/search/photos?query=${searchTerm}`);
-    return response.data;
+    return response.data.results;
 }
-

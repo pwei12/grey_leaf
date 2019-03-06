@@ -1,9 +1,6 @@
 import React from "react";
 import {
-  Button,
   Container,
-  Form,
-  FormControl,
   Nav,
   Navbar
 } from "react-bootstrap";
@@ -18,8 +15,8 @@ function NavBar() {
           <NavLink to="/" className="mr-3">
             Home
           </NavLink>
-          <NavLink to="/shop" className="mr-3">
-            Shop
+          <NavLink to="/products" className="mr-3">
+            Products
           </NavLink>
           <NavLink to="/contact" className="mr-3">
             Contact
@@ -28,10 +25,6 @@ function NavBar() {
             Shopping Cart
           </NavLink>
         </Nav>
-        {/* <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
-        </Form> */}
       </Navbar>
     </Container>
   );
