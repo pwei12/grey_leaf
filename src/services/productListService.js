@@ -97,13 +97,14 @@ export function getProductById(id) {
 
 export function addToCart(id, quantity) {
     const product = productList.find(product => product.id === id);
-    const price = product.price*quantity;
+    const subTotal = product.price*quantity;
     
     const addedProduct = {
         id,
         name: product.name,
+        price: product.price,
         quantity,
-        price,
+        subTotal,
         imageUrl: product.imageUrl
     }
     cartList.push(addedProduct)
