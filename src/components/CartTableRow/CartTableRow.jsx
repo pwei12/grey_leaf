@@ -1,22 +1,15 @@
-import React from 'react';
-import {
-    Table
-} from 'react-bootstrap';
+import React from "react";
 
-function CartTable({item: {name, quantity, price, subTotal}}) {
-    console.log('from table',name, quantity, price, subTotal)
+function CartTable({ item: { name, quantity, price, subTotal }, itemNum }) {
   return (
-   
- <tr>
-                      <td>1</td>
-                      <td>{name}</td>
-                      <td>{quantity}</td>
-                      <td>{price}</td>
-                      <td>{subTotal}</td>
-                  </tr>
-         
-        
-  )
+    <tr>
+      <td>{itemNum}</td>
+      <td>{name}</td>
+      <td>{quantity}</td>
+      <td>{price}</td>
+      <td>{subTotal}</td>
+    </tr>
+  );
 }
 
-export default CartTable
+export default CartTable;

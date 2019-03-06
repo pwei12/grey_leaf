@@ -5,7 +5,6 @@ import CartTableRow from "../CartTableRow/CartTableRow";
 
 function Cart() {
   const cartList = getCartList();
-  console.log("cartList from cart", cartList);
 
   return (
     <Container>
@@ -20,9 +19,9 @@ function Cart() {
               <th>Subtotal</th>
             </tr>
           </thead>
-          {cartList.map(item => (
+          {cartList.map((item, index) => (
             <tbody>
-                <CartTableRow item={item}/>
+                <CartTableRow key={index} item={item} itemNum={index+1}/>
             </tbody>
           ))}
         </Table>
