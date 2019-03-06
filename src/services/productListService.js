@@ -85,11 +85,26 @@ let productList = [
     }
 ];
 
+let cartList = [];
+
 export function getAllProducts() {
     return productList;
 }
 
 export function getProductById(id) {
     return productList.find(product => product.id === id)
+}
+
+export function addToCartById(id, quantity) {
+    const product = productList.find(product => product.id === id);
+    const price = product.price*quantity;
     
+    const addedProduct = {
+        id,
+        name: product.name,
+        quantity,
+        price,
+        imageUrl: product.imageUrl
+    }
+    return cartList.push(addedProduct);
 }
