@@ -5,6 +5,7 @@ import Contact from "../src/components/Contact/Contact";
 import HomePage from "../src/components/HomePage/HomePage";
 import NavBar from "../src/components/NavBar/NavBar";
 import Products from "../src/components/Products/Products";
+import ProductDetails from "../src/components/ProductDetails/ProductDetails";
 import Footer from "../src/components/Footer/Footer";
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route path="/contact" component={Contact} />
+            <Route path="/products/product/:id" component={ProductDetails} />
             <Route path="/products" component={Products} />
             <Route path="/" exact component={HomePage} />
           </Switch>

@@ -3,7 +3,7 @@ let productList = [
         id: "57eUYHIIIH0",
         name: "asdgjkng",
         price: 20.00,
-        description: "red flower petals on table",
+        description: "red flower petals on table blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah",
         imageUrl: "https://images.unsplash.com/photo-1547793548-7a0e7dfdb24f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjU5NTA2fQ"
     },
     {
@@ -87,4 +87,9 @@ let productList = [
 
 export function getAllProducts() {
     return productList;
+}
+
+export function getProductById(id) {
+    return productList.find(product => product.id === id)
+    
 }
