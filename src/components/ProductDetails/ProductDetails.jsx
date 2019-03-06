@@ -8,7 +8,7 @@ import {
   InputGroup,
   Form
 } from 'react-bootstrap';
-import { getProductById } from '../../services/productList'
+import { getProductById } from '../../services/productListService'
 
 function ProductDetails({match}) {
   

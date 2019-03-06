@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
-import { getAllProducts } from "../../services/productList"
+import { getAllProducts } from "../../services/productListService"
 import { searchPhotos } from "../../services/unsplash";
 import Product from "../Product/Product";
 
