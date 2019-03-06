@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 
 function Product({ product }) {
-  const { name, price, imageUrl, description, id } = product;
+  const { name, price, imageUrl, id } = product;
   return (
     <Card className="mb-3">
       <Link to={`/products/product/${id}`}>
@@ -13,7 +13,9 @@ function Product({ product }) {
         <Card.Title>{name}</Card.Title>
         <Card.Text>${price.toFixed(2)}</Card.Text>
         {/* <Card.Text>{description}</Card.Text> */}
-        <Button variant="primary">Add to Cart</Button>
+        <Button variant="primary" >
+          <Link to="/cart" className="text-white">Add to Cart</Link>
+        </Button>
       </Card.Body>
     </Card>
   );
