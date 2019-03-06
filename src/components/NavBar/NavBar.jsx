@@ -21,7 +21,7 @@ function NavBar() {
           <NavLink to="/contact" className="mr-3">
             Contact
           </NavLink>
-          <NavLink to="/shoppingCart" className="mr-3">
+          <NavLink to="/cart" className="mr-3">
             Shopping Cart
           </NavLink>
         </Nav>

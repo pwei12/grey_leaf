@@ -23,8 +23,12 @@ function Product({ product }) {
         <Card.Text>${price.toFixed(2)}</Card.Text>
         {/* <Card.Text>{description}</Card.Text> */}
         <Button variant="primary" onClick={handleAddToCart}>
-          <Link to="/cart" className="text-white">Add to Cart</Link>
-        </Button>
+          {/* <Link to="/cart" className="text-white">Add to Cart</Link> */}
+        {addCartButton ?
+            <Link to="/cart" className="text-white">Go to Shopping Cart</Link>
+          :
+          "Add to Cart"}
+          </Button>
       </Card.Body>
     </Card>
   );
