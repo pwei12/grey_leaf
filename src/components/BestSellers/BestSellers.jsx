@@ -1,48 +1,63 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
+import { 
+  Container,
+  Row,
+  Col, 
+  Carousel 
+} from "react-bootstrap";
 
 function BestSellers() {
   return (
-    <Container className="mt-5">
-      <Row>
-        <Col xs={12} sm={6} md={4}>
-          <h1>Best Sellers</h1>
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col xs={12} sm={6} md="auto">
+          <h3>Best Sellers</h3>
         </Col>
       </Row>
-      <Row>
-        <Col xs={12} sm={6} md={4}>
-          <Link to="/">
-            <Image
-              src="./images/AllProducts/BestSellers/cindereallaBarSoap.jpg"
-              fluid
-              rounded
-            />
-          </Link>
-          <h4>Cinderealla Bar Soap</h4>
-        </Col>
-        <Col xs={6} md={4}>
-          <Link to="/">
-            <Image
-              src="./images/AllProducts/BestSellers/naturalBleach.jpg"
-              fluid
-              rounded
-            />
-          </Link>
-          <h4>Natural Bleach</h4>
-        </Col>
-        <Col xs={6} md={4}>
-          <Link to="/">
-            <Image
-              src="./images/AllProducts/BestSellers/naturalLaundryPowder.jpg"
-              fluid
-              rounded
-            />
-          </Link>
-          <h4>Natural Laundry Powder</h4>
+      <Row className="justify-content-md-center">
+        <Col md={4} xs={12} sm={6}>
+          <Carousel>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="./assets/AllProducts/BestSellers/cindereallaBarSoap.jpg"
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>First slide label</h3>
+                <p>
+                  Nulla vitae elit libero, a pharetra augue mollis interdum.
+                </p>
+              </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="./assets/AllProducts/BestSellers/naturalBleach.jpg"
+                alt="Third slide"
+              />
+              <Carousel.Caption>
+                <h3>Second slide label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="./assets/AllProducts/BestSellers/naturalLaundryPowder.jpg"
+                alt="Third slide"
+              />
+              <Carousel.Caption>
+                <h3>Third slide label</h3>
+                <p>
+                  Praesent commodo cursus magna, vel scelerisque nisl
+                  consectetur.
+                </p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
         </Col>
       </Row>
     </Container>

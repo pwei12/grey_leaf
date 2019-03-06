@@ -1,44 +1,37 @@
 import React from "react";
 import {
-  Navbar,
-  Nav,
+  Button,
+  Container,
   Form,
   FormControl,
-  Button,
-  Container
+  Nav,
+  Navbar
 } from "react-bootstrap";
-// import Navbar from "react-bootstrap/Navbar";
-// import Nav from "react-bootstrap/Nav";
-// import Form from "react-bootstrap/Form";
-// import FormControl from "react-bootstrap/FormControl";
-// import Button from "react-bootstrap/Button";
-// import Container from "react-bootstrap/Container";
-// import Image from "react-bootstrap/Image";
 import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
-    <Container>
+    <Container className="mt-3">
       <Navbar expand="lg" bg="dark" variant="light">
         
         <Nav className="d-flex justify-content-sm-center">
           <NavLink to="/" className="mr-3">
             Home
           </NavLink>
-          <NavLink to="/allProducts" className="mr-3">
-            All Products
+          <NavLink to="/shop" className="mr-3">
+            Shop
           </NavLink>
           <NavLink to="/contact" className="mr-3">
             Contact
           </NavLink>
-          <NavLink to="/contact" className="mr-3">
+          <NavLink to="/shoppingCart" className="mr-3">
             Shopping Cart
           </NavLink>
         </Nav>
-        <Form inline>
+        {/* <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-info">Search</Button>
-        </Form>
+        </Form> */}
       </Navbar>
     </Container>
   );
