@@ -107,24 +107,28 @@ export function getProductById(id) {
     return productList.find(product => product.id === id)
 }
 
+export function toggleInCart(id) {
+    const updatedProductList = productList.map(product => {
+        if (product.id === id) {
+            const updatedProduct = { ...product, inCart: !product.incart };
+            return updatedProduct;
+        }
+        return product;
+    });
+    return updatedProductList;
+}
+
 export function updateProductList(list) {
     productList = [...list];
 }
 
-export function addToCartList(product) {
-    cartList.push(product);
+export function addToCartList(id, quantity) {
+    const product = productList.find(product => product.id === id);
+    const subTotal = product.price * quantity;
+    const addedProduct = { ...product, quantity, subTotal, inCart: true };
+    cartList.push(addedProduct);
 }
 
 export function getCartList() {
     return cartList;
-}
-
-export function toggleInCart(id) {
-    productList = productList.map(product => {
-        if (product.id === id) {
-            const updatedProduct = { ...product, inCart: !product.incart }
-            return updatedProduct;
-        }
-        return product;
-    })
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import {
   Container,
@@ -8,15 +8,21 @@ import {
 } from "react-bootstrap";
 import {
   getProductById,
-  addToCartList
+  addToCartList,
+  toggleInCart,
+  updateProductList
 } from "../../services/productListService";
 
 function ProductDetails({ match }) {
   const [quantity, setQuantity] = useState(1);
-  const [addCartButton, setAddCartButton] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const product = getProductById(match.params.id);
-  const { id, name, price, description, imageUrl } = product;
+  const { id, name, price, description, imageUrl, inCart } = product;
+
+  useEffect(() => {
+    setAddedToCart(inCart);
+  }, [setAddedToCart]);
 
   const handleQuantityChange = event => {
     setQuantity(event.target.value);
@@ -24,7 +30,17 @@ function ProductDetails({ match }) {
 
   const handleAddToCart = e => {
     e.preventDefault();
-    setAddCartButton(!addCartButton);
+    
+    //toggle incart and get the updated productlist
+    const updatedProductList = toggleInCart(id);
+    
+    //update data 
+    updateProductList(updatedProductList);
+    
+    //update state 
+    setAddedToCart(!addedToCart);
+
+    //add product into cartList
     addToCartList(id, quantity);
   };
 
@@ -56,7 +72,7 @@ function ProductDetails({ match }) {
             <button 
               type="submit"
             >
-              {addCartButton ? 
+              {addedToCart ? 
                 <Link to="/cart">Go to Shopping Cart</Link>
                 : 
                 "Add to Cart"}

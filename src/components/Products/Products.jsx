@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import {
   getAllProducts,
   addToCartList,
+  toggleInCart,
   updateProductList
 } from "../../services/productListService";
 import Product from "../Product/Product";
@@ -14,32 +15,38 @@ function Products() {
     setProductList(getAllProducts);
   }, [setProductList]);
 
-  const toggleInCart = id => {
-    const updatedProductList = productList.map(product => {
-      if (product.id === id) {
-        const updatedProduct = { ...product, inCart: !product.incart };
-        return updatedProduct;
-      }
-      return product;
-    });
-    setProductList(updatedProductList);
-    updateProductList(updatedProductList);
-  };
+  // const toggleInCart = id => {
+  //   const updatedProductList = productList.map(product => {
+  //     if (product.id === id) {
+  //       const updatedProduct = { ...product, inCart: !product.incart };
+  //       return updatedProduct;
+  //     }
+  //     return product;
+  //   });
+  //   setProductList(updatedProductList);
+  //   updateProductList(updatedProductList);
+  // };
 
-  const addToCart = (id, quantity) => {
-    const product = productList.find(product => product.id === id);
-    const subTotal = product.price * quantity;
-    const addedProduct = { ...product, quantity, subTotal, inCart: true };
-    addToCartList(addedProduct);
-    toggleInCart(id);
-  };
+  const handleAddToCart = (id, quantity) => {
+    //toggle incart and get the updated productlist
+    const updatedProductList = toggleInCart(id);
+    
+    //update state 
+    setProductList(updatedProductList);
+
+    //update data 
+    updateProductList(updatedProductList);
+
+    //add product into cartList
+    addToCartList(id, quantity);
+  }
 
   return (
     <Container className="mt-3">
       <Row className="justify-content-md-around">
         {productList.map(product => (
           <Col xs={12} sm={6} md={6} lg={4} key={product.name}>
-            <Product product={product} handleAddToCart={addToCart} />
+            <Product product={product} handleAddToCart={handleAddToCart} />
           </Col>
         ))}
       </Row>
