@@ -107,12 +107,12 @@ export function getProductById(id) {
     return productList.find(product => product.id === id)
 }
 
-export function addToCart(id, quantity) {
-    const product = productList.find(product => product.id === id);
-    const subTotal = product.price*quantity;
-    const addedProduct = { ...product, quantity, subTotal, inCart: true }
-    cartList.push(addedProduct);
-    toggleInCart(id);
+export function updateProductList(list) {
+    productList = [...list];
+}
+
+export function addToCartList(product) {
+    cartList.push(product);
 }
 
 export function getCartList() {
@@ -125,6 +125,6 @@ export function toggleInCart(id) {
             const updatedProduct = { ...product, inCart: !product.incart }
             return updatedProduct;
         }
-        return product
+        return product;
     })
 }

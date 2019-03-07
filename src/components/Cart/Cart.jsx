@@ -19,11 +19,12 @@ function Cart() {
               <th>Subtotal</th>
             </tr>
           </thead>
-          {cartList.map((item, index) => (
-            <tbody>
-                <CartTableRow key={index} item={item} itemNum={index+1}/>
-            </tbody>
-          ))}
+          <tbody>
+            {cartList.map((item, index) => (
+              <CartTableRow key={index} item={item} itemNum={index+1}/>
+            ))}
+           
+          </tbody>
         </Table>
       </div>
     </Container>

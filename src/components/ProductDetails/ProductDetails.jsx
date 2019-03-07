@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 import {
   getProductById,
-  addToCart
+  addToCartList
 } from "../../services/productListService";
 
 function ProductDetails({ match }) {
@@ -25,7 +25,7 @@ function ProductDetails({ match }) {
   const handleAddToCart = e => {
     e.preventDefault();
     setAddCartButton(!addCartButton);
-    addToCart(id, quantity);
+    addToCartList(id, quantity);
   };
 
   return (
