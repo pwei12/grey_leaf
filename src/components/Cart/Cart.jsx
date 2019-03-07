@@ -25,6 +25,8 @@ function Cart() {
     updateCartList(updatedCartList);
   }
 
+  const total = cartList.map(item => item.subTotal).reduce((acc, currentValue) => acc+currentValue, 0)
+
   return (
     <Container>
       <div>
@@ -47,7 +49,13 @@ function Cart() {
                 handleQuantityChange={handleQuantityChange}
               />
             ))}
-           
+           <tr>
+             <th></th>
+             <th></th>
+             <th></th>
+             <th>Total</th>
+             <th>{total}</th>
+           </tr>
           </tbody>
         </Table>
       </div>
