@@ -7,6 +7,7 @@ import NavBar from "../src/components/NavBar/NavBar";
 import Products from "../src/components/Products/Products";
 import ProductDetails from "../src/components/ProductDetails/ProductDetails";
 import Cart from "../src/components/Cart/Cart";
+import Checkout from "../src/components/Checkout/Checkout";
 import Footer from "../src/components/Footer/Footer";
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
           <Logo />
           <NavBar />
           <Switch>
+            <Route path="/cart/checkout" component={Checkout} />
             <Route path="/cart" component={Cart} />
             <Route path="/contact" component={Contact} />
             <Route path="/products/product/:id" component={ProductDetails} />

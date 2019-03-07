@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Link } from 'react-router-dom';
+import { 
+  Container,
+  Table,
+  Button,
+  Row,
+  Col
+} from "react-bootstrap";
 import { getCartList, updateCartList } from "../../services/productListService";
 import CartTableRow from "../CartTableRow/CartTableRow";
 
@@ -29,7 +36,6 @@ function Cart() {
 
   return (
     <Container>
-      <div>
         <Table striped bordered hover responsive="md" className="mt-3">
           <thead>
             <tr>
@@ -58,7 +64,15 @@ function Cart() {
            </tr>
           </tbody>
         </Table>
-      </div>
+        <Row>
+          <Col xs={12} sm={12} md={12} lg={6}>
+            <Button variant="primary">
+              <Link to="/cart/checkout" className="text-white">
+                Proceed to Checkout
+              </Link>
+            </Button>
+          </Col>
+        </Row>
     </Container>
   );
 }
