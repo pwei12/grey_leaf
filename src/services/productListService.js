@@ -99,6 +99,8 @@ let productList = [
 
 let cartList = [];
 
+let shippingFee = cartList.length > 10 ? 0 : 5;
+
 export function getAllProducts() {
     return productList;
 }
@@ -135,4 +137,8 @@ export function getCartList() {
 
 export function updateCartList(list) {
     cartList = [...list];
+}
+
+export function getShippingFee() {
+    return shippingFee;
 }
