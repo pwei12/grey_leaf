@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+import { 
+  Card,
+  Button,
+  Form
+ } from "react-bootstrap";
 import { addToCart } from '../../services/productListService'
 
 function Product({ product }) {
@@ -8,7 +12,6 @@ function Product({ product }) {
   const [addCartButton, setAddCartButton] = useState(false);
 
   const handleAddToCart = e => {
-    e.preventDefault();
     setAddCartButton(!addCartButton);
     addToCart(id, 1);
   };
@@ -22,13 +25,19 @@ function Product({ product }) {
         <Card.Title>{name}</Card.Title>
         <Card.Text>${price.toFixed(2)}</Card.Text>
         {/* <Card.Text>{description}</Card.Text> */}
-        <Button variant="primary" onClick={handleAddToCart}>
-          {/* <Link to="/cart" className="text-white">Add to Cart</Link> */}
-        {addCartButton ?
-            <Link to="/cart" className="text-white">Go to Shopping Cart</Link>
-          :
-          "Add to Cart"}
-          </Button>
+
+        <Button 
+          variant="primary" 
+          type="button" 
+          onClick={handleAddToCart}
+          disabled={addCartButton}
+        >
+          {addCartButton 
+            ?
+            "Added to Cart"
+            :
+            "Add to Cart"}
+        </Button>
       </Card.Body>
     </Card>
   );
