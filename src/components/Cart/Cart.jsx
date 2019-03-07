@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Table } from "react-bootstrap";
-import { getCartList } from "../../services/productListService";
+import { getCartList, updateCartList } from "../../services/productListService";
 import CartTableRow from "../CartTableRow/CartTableRow";
 
 function Cart() {
-  const cartList = getCartList();
+  const [cartList, setCartList] = useState([]);
+  useEffect(() => {
+    setCartList(getCartList);
+  })
+
+  const handleQuantityChange = e => {
+    const id = e.target.id;
+    // update cartlist in state
+    const updatedCartList = cartList.map((item) => {
+      if(item.id === id) {
+        const quantity = e.target.value;
+        const subTotal = quantity*item.price;
+        return {...item, quantity, subTotal};
+      }
+      return item;
+    })
+    setCartList(updatedCartList);
+    //update cartlist in data
+    updateCartList(updatedCartList);
+  }
 
   return (
     <Container>
@@ -21,7 +40,12 @@ function Cart() {
           </thead>
           <tbody>
             {cartList.map((item, index) => (
-              <CartTableRow key={index} item={item} itemNum={index+1}/>
+              <CartTableRow 
+                key={index} 
+                item={item} 
+                itemNum={index+1}
+                handleQuantityChange={handleQuantityChange}
+              />
             ))}
            
           </tbody>

@@ -107,6 +107,10 @@ export function getProductById(id) {
     return productList.find(product => product.id === id)
 }
 
+export function updateProductList(list) {
+    productList = [...list];
+}
+
 export function toggleInCart(id) {
     const updatedProductList = productList.map(product => {
         if (product.id === id) {
@@ -118,10 +122,6 @@ export function toggleInCart(id) {
     return updatedProductList;
 }
 
-export function updateProductList(list) {
-    productList = [...list];
-}
-
 export function addToCartList(id, quantity) {
     const product = productList.find(product => product.id === id);
     const subTotal = product.price * quantity;
@@ -131,4 +131,8 @@ export function addToCartList(id, quantity) {
 
 export function getCartList() {
     return cartList;
+}
+
+export function updateCartList(list) {
+    cartList = [...list];
 }

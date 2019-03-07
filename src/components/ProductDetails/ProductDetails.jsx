@@ -68,6 +68,7 @@ function ProductDetails({ match }) {
               placeholder="1"
               onChange={handleQuantityChange}
               value={quantity}
+              disabled={addedToCart}
               />
             <button 
               type="submit"

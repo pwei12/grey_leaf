@@ -15,18 +15,6 @@ function Products() {
     setProductList(getAllProducts);
   }, [setProductList]);
 
-  // const toggleInCart = id => {
-  //   const updatedProductList = productList.map(product => {
-  //     if (product.id === id) {
-  //       const updatedProduct = { ...product, inCart: !product.incart };
-  //       return updatedProduct;
-  //     }
-  //     return product;
-  //   });
-  //   setProductList(updatedProductList);
-  //   updateProductList(updatedProductList);
-  // };
-
   const handleAddToCart = (id, quantity) => {
     //toggle incart and get the updated productlist
     const updatedProductList = toggleInCart(id);
