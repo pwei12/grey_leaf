@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 function NavBar() {
   return (
     <Container className="mt-3">
-      <Navbar expand="lg" bg="dark" variant="light">
+    <Navbar expand="lg" bg="dark" variant="light">
         
         <Nav className="d-flex justify-content-sm-center">
           <NavLink to="/" className="mr-3">

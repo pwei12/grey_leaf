@@ -10,9 +10,13 @@ import CartTableRow from "../CartTableRow/CartTableRow";
 
 function Cart() {
   const [cartList, setCartList] = useState([]);
+  const [shippingFee, setShippingFee] = useState(0);
+
   useEffect(() => {
-    setCartList(getCartList);
+    setCartList(getCartList());
+    setShippingFee(getShippingFee());
   });
+  
 
   const handleQuantityChange = e => {
     const id = e.target.id;
@@ -28,9 +32,13 @@ function Cart() {
     setCartList(updatedCartList);
     //update cartlist in data
     updateCartList(updatedCartList);
+    console.log(getCartList());
+
+    //update shipping fee in state
+    setShippingFee(getShippingFee());
   };
 
-  const shippingFee = getShippingFee();
+  
   const total =
     cartList
       .map(item => item.subTotal)

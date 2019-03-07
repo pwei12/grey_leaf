@@ -97,9 +97,7 @@ let productList = [
     }
 ];
 
-let cartList = [];
-
-let shippingFee = cartList.length > 10 ? 0 : 5;
+let cartList = []; 
 
 export function getAllProducts() {
     return productList;
@@ -140,5 +138,7 @@ export function updateCartList(list) {
 }
 
 export function getShippingFee() {
+    const totalItems = cartList.map(item => item.quantity).reduce((acc,currentValue) => acc+currentValue, 0)
+    const shippingFee = totalItems > 10 ? 0 : 5;
     return shippingFee;
 }
