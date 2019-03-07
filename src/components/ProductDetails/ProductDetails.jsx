@@ -4,10 +4,7 @@ import {
   Container,
   Row,
   Col,
-  Image,
-  Button,
-  InputGroup,
-  Form
+  Image
 } from "react-bootstrap";
 import {
   getProductById,
