@@ -27,7 +27,7 @@ function ProductDetails({ match }) {
   }, [setAddedToCart]);
 
   const handleQuantityChange = event => {
-    setQuantity(event.target.value);
+    setQuantity(parseInt(event.target.value));
   };
 
   const handleAddToCart = e => {
@@ -70,6 +70,8 @@ function ProductDetails({ match }) {
               placeholder="1"
               onChange={handleQuantityChange}
               value={quantity}
+              min="1"
+              max="50"
               disabled={addedToCart}
               />
             <Container className="mt-3">

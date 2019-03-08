@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Table, Button, Row, Col } from "react-bootstrap";
+import Joi from "joi-browser";
 import {
   getCartList,
   updateCartList,
@@ -16,29 +17,27 @@ function Cart() {
     setCartList(getCartList());
     setShippingFee(getShippingFee());
   });
-  
 
-  const handleQuantityChange = e => {
+    const handleQuantityChange = e => {
     const id = e.target.id;
     // update cartlist in state
     const updatedCartList = cartList.map(item => {
       if (item.id === id) {
-        const quantity = e.target.value;
+        const quantity = parseInt(e.target.value);
         const subTotal = quantity * item.price;
-        return { ...item, quantity, subTotal };
+        return { ...item, quantity , subTotal };
       }
       return item;
     });
     setCartList(updatedCartList);
     //update cartlist in data
     updateCartList(updatedCartList);
-    console.log(getCartList());
 
     //update shipping fee in state
     setShippingFee(getShippingFee());
   };
 
-  
+  const totalItems = cartList.map(item => item.quantity).reduce((acc, currentValue) => acc + currentValue, 0);
   const total =
     cartList
       .map(item => item.subTotal)
@@ -74,21 +73,21 @@ function Cart() {
                 <th />
                 <th />
                 <th>Shipping Fee</th>
-                <th>SGD {shippingFee}</th>
+                <th>SGD {shippingFee.toFixed(2)}</th>
               </tr>
               <tr>
                 <th />
-                <th />
-                <th />
+                <th>Total Items</th>
+                <th>{totalItems}</th>
                 <th>Total</th>
-                <th>SGD {total}</th>
+                <th>SGD {total.toFixed(2)}</th>
               </tr>
             </tbody>
           </Table>
           <Row>
             <Col xs={12} sm={12} md={12} lg={6}>
               <Button variant="primary">
-                <Link to="/cart/checkout" className="text-white">
+                <Link to="/cart/checkout" className="text-white link">
                   Proceed to Checkout
                 </Link>
               </Button>
