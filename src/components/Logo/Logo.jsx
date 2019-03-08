@@ -6,6 +6,7 @@ import {
   Row 
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Brand_Logo from '../../assets/logo.jpg'
 import "./Logo.css";
 
 function Logo() {
@@ -14,7 +15,7 @@ function Logo() {
       <Row className="justify-content-md-center">
         <Col md="auto">
           <Link to="/" className="link">
-            <Image src="assets/logo.jpg" fluid className="mx-auto" />
+            <Image src={Brand_Logo} fluid className="mx-auto" />
             <h1>Grey Leaf</h1>
           </Link>
         </Col>

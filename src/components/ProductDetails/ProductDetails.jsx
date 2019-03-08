@@ -47,7 +47,7 @@ function ProductDetails({ match }) {
   };
 
   return (
-    <Container>
+    <Container className="pb-5">
       <Row className="justify-content-md-end">
         <Col xs={12} sm={6} md={4} lg={4}>
           <Image src={imageUrl} thumbnail />
