@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import "./Footer.css"
 
 function Footer() {
   return (
-    <footer>
-      <Container className="text-white bg-dark p-2" fluid >
+    <footer className="footer">
+      {/* <Container className="text-white bg-dark p-2" fluid > */}
         <span>
-          &copy; 
-          {new Date().getFullYear()} 
+          &copy;
+          {new Date().getFullYear()} &nbsp; 
           <Link to="/">Grey Leaf</Link>
-          .
         </span>
-      </Container>
+      {/* </Container> */}
     </footer>
   );
 }

@@ -35,7 +35,7 @@ function Products() {
 
   return (
     <Container className="mt-3" fluid> 
-      <Row className="justify-content-md-around">
+      <Row className="justify-content-md-around pb-5">
         {productList.map(product => (
           <Col xs={12} sm={12} md={6} lg={4} key={product.name}>
             <Product product={product} handleAddToCart={handleAddToCart} />

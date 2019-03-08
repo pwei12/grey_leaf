@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Badge, Row, Col, Button } from "react-bootstrap";
 import { getSubTotal, getShippingFee } from "../../services/productListService";
 
 function Checkout() {
+  const [payment, setPayment] = useState(false);
+
+  const toPay = () => {
+    setPayment(!payment);
+    return payment;
+  }
+
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -24,8 +31,14 @@ function Checkout() {
         <Col>Total</Col>
         <Col>SGD {getSubTotal() + getShippingFee()}</Col>
       </Row>
-      <Button variant="warning">Checkout</Button>
-        
+      <Button variant="warning" onClick={toPay}>
+          Checkout
+      </Button>
+
+      { payment && alert(
+      <div class="alert alert-primary" role="alert">
+        Congratulation! Payment is successfully done.
+      </div> )}
     </Container>
   );
 }

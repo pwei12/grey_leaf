@@ -9,6 +9,7 @@ import ProductDetails from "../src/components/ProductDetails/ProductDetails";
 import Cart from "../src/components/Cart/Cart";
 import Checkout from "../src/components/Checkout/Checkout";
 import Footer from "../src/components/Footer/Footer";
+import "./App.css"
 
 class App extends Component {
   render() {

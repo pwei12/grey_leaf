@@ -8,7 +8,7 @@ import "./NavBar.css"
 
 function NavBar() {
   return (
-    <Navbar expand="lg" bg="dark" variant="light">
+    <Navbar expand="lg" variant="light" className="navbar">
         
         <Nav className="d-flex justify-content-sm-center">
           <NavLink to="/" className="mr-3 navbarlink">
