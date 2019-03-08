@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Table, Button, Row, Col } from "react-bootstrap";
-import Joi from "joi-browser";
 import {
   getCartList,
   updateCartList,
-  getShippingFee
+  getShippingFee,
+  setSubTotal
 } from "../../services/productListService";
 import CartTableRow from "../CartTableRow/CartTableRow";
 
@@ -38,10 +38,13 @@ function Cart() {
   };
 
   const totalItems = cartList.map(item => item.quantity).reduce((acc, currentValue) => acc + currentValue, 0);
-  const total =
+  const subTotal =
     cartList
       .map(item => item.subTotal)
-      .reduce((acc, currentValue) => acc + currentValue, 0) + shippingFee;
+      .reduce((acc, currentValue) => acc + currentValue, 0)
+  const total = subTotal + shippingFee;
+
+  setSubTotal(subTotal);      
 
   return (
     <Container>

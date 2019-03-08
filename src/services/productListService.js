@@ -110,6 +110,7 @@ let productList = [
 ];
 
 let cartList = []; 
+let subTotal = 0;
 
 export function getAllProducts() {
     return productList;
@@ -153,4 +154,12 @@ export function getShippingFee() {
     const totalItems = cartList.map(item => item.quantity).reduce((acc,currentValue) => acc+currentValue, 0)
     const shippingFee = totalItems > 10 ? 0 : 5;
     return shippingFee;
+}
+
+export function setSubTotal(value) {
+    subTotal = value;
+}
+
+export function getSubTotal() {
+    return subTotal;
 }

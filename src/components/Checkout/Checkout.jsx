@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Badge, Row, Col, Button } from "react-bootstrap";
+import { getSubTotal, getShippingFee } from "../../services/productListService";
 
 function Checkout() {
   return (
@@ -13,15 +14,15 @@ function Checkout() {
       </Row>
       <Row>
         <Col>Subtotal</Col>
-        <Col>SGD {}</Col>
+        <Col>SGD {getSubTotal()}</Col>
       </Row>
       <Row>
         <Col>Shipping Fee</Col>
-        <Col>SGD {}</Col>
+        <Col>SGD {getShippingFee()}</Col>
       </Row>
       <Row>
         <Col>Total</Col>
-        <Col>SGD {}</Col>
+        <Col>SGD {getSubTotal() + getShippingFee()}</Col>
       </Row>
       <Button variant="warning">Checkout</Button>
         
