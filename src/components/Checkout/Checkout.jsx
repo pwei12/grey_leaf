@@ -36,9 +36,10 @@ function Checkout() {
       </Button>
 
       { payment && alert(
-      <div class="alert alert-primary" role="alert">
-        Congratulation! Payment is successfully done.
-      </div> )}
+      // <div class="alert alert-primary" role="alert">
+       " Congratulation! Payment is successfully done.")
+      // </div> )
+      }
     </Container>
   );
 }

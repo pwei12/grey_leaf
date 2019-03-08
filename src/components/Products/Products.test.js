@@ -20,8 +20,9 @@ describe('Shop', () => {
         }
     ]
     test("It renders all product", () => {
-        const { getByText } = render(<Shop {...productList} />);
+        const { getByText } = render(<App />);
 
-        expect(getByText(/product/i)).toBeInTheDocument();
+        expect(getByText(/Add to Cart/i)).toBeInTheDocument();
+        fireEvent
     })
 })

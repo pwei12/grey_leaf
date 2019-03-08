@@ -8,7 +8,6 @@ import {
 
 function Product({ product, handleAddToCart }) {
   const { name, price, imageUrl, id, inCart } = product;
-
   return (
     <Card className="mb-3">
       <Link to={`/products/product/${id}`}>
