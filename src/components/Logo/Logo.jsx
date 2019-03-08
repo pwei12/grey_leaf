@@ -6,15 +6,14 @@ import {
   Row 
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import "./Logo.css";
 
 function Logo() {
   return (
-    <Container>
+    <Container >
       <Row className="justify-content-md-center">
         <Col md="auto">
-          <Link to="/">
+          <Link to="/" className="link">
             <Image src="assets/logo.jpg" fluid className="mx-auto" />
             <h1>Grey Leaf</h1>
           </Link>

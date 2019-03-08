@@ -1,18 +1,18 @@
-.link {
+.navbarlink {
     color: #ff7733;
 }
 
-.link:hover {
+.navbarlink:hover {
     text-decoration: none;
     color:   #e64d00;
 }
 
-.link:active {
+.navbarlink:active {
     text-decoration: none;
     color:   #ff7733;
 }
 
-.link:visited {
+.navbarlink:visited {
     text-decoration: none;
     color:  #ff7733;
 }

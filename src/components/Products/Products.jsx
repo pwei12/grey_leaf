@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { 
+  Container, 
+  Row, 
+  Col 
+} from "react-bootstrap";
 import {
   getAllProducts,
   addToCartList,
@@ -30,10 +34,10 @@ function Products() {
   }
 
   return (
-    <Container className="mt-3">
+    <Container className="mt-3" fluid> 
       <Row className="justify-content-md-around">
         {productList.map(product => (
-          <Col xs={12} sm={6} md={6} lg={4} key={product.name}>
+          <Col xs={12} sm={12} md={6} lg={4} key={product.name}>
             <Product product={product} handleAddToCart={handleAddToCart} />
           </Col>
         ))}

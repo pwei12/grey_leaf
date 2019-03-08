@@ -1,32 +1,30 @@
 import React from "react";
 import {
-  Container,
   Nav,
   Navbar
 } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import "./NavBar.css"
 
 function NavBar() {
   return (
-    <Container className="mt-3">
     <Navbar expand="lg" bg="dark" variant="light">
         
         <Nav className="d-flex justify-content-sm-center">
-          <NavLink to="/" className="mr-3">
+          <NavLink to="/" className="mr-3 navbarlink">
             Home
           </NavLink>
-          <NavLink to="/products" className="mr-3">
+          <NavLink to="/products" className="mr-3 navbarlink">
             Products
           </NavLink>
-          <NavLink to="/contact" className="mr-3">
+          <NavLink to="/contact" className="mr-3 navbarlink">
             Contact
           </NavLink>
-          <NavLink to="/cart" className="mr-3">
+          <NavLink to="/cart" className="mr-3 navbarlink">
             Shopping Cart
           </NavLink>
         </Nav>
       </Navbar>
-    </Container>
   );
 }
 
