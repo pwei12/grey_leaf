@@ -17,7 +17,6 @@ function Product({ product, handleAddToCart }) {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>${price.toFixed(2)}</Card.Text>
-        {/* <Card.Text>{description}</Card.Text> */}
 
         <Button 
           variant="primary" 

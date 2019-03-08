@@ -1,18 +1,9 @@
 .navbarlink {
     color: #ff7733;
+    
 }
 
 .navbarlink:hover {
-    text-decoration: none;
     color:   #e64d00;
-}
-
-.navbarlink:active {
     text-decoration: none;
-    color:   #ff7733;
-}
-
-.navbarlink:visited {
-    text-decoration: none;
-    color:  #ff7733;
 }

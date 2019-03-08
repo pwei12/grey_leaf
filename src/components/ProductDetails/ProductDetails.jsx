@@ -4,7 +4,8 @@ import {
   Container,
   Row,
   Col,
-  Image
+  Image,
+  Button
 } from "react-bootstrap";
 import {
   getProductById,
@@ -12,6 +13,7 @@ import {
   toggleInCart,
   updateProductList
 } from "../../services/productListService";
+import './ProductDetails.css'
 
 function ProductDetails({ match }) {
   const [quantity, setQuantity] = useState(1);
@@ -46,7 +48,7 @@ function ProductDetails({ match }) {
 
   return (
     <Container>
-      <Row className="justify-content-md-around">
+      <Row className="justify-content-md-end">
         <Col xs={12} sm={6} md={4} lg={4}>
           <Image src={imageUrl} thumbnail />
         </Col>
@@ -59,8 +61,8 @@ function ProductDetails({ match }) {
             name="quantity"
             onSubmit={handleAddToCart}
             >
-            <label htmlFor="quantity">
-              Quantity
+            <label htmlFor="quantity" >
+              Quantity:
             </label>
             <input 
               id="quantity"
@@ -70,14 +72,30 @@ function ProductDetails({ match }) {
               value={quantity}
               disabled={addedToCart}
               />
-            <button 
-              type="submit"
-            >
-              {addedToCart ? 
-                <Link to="/cart">Go to Shopping Cart</Link>
-                : 
-                "Add to Cart"}
-            </button>
+            <Container className="mt-3">
+              <Row className="justify-content-flex-end">
+                <Col>
+              <Button 
+                type="submit"
+                disabled={addedToCart}
+                >
+                {addedToCart ? 
+                  "Added to Cart"
+                  : 
+                  "Add to Cart"}
+              </Button>
+                  </Col>
+                </Row>
+            </Container>
+            <Container className="mt-3">
+              <Row className="justify-content-flex-end">
+                <Col>
+              <Button type="button">
+                <Link to="/cart" className="text-white link">Go to Shopping Cart</Link>
+              </Button>
+            </Col>
+                </Row>
+            </Container>
           </form>
          
         </Col>
