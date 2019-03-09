@@ -88,19 +88,21 @@ function Cart() {
                 />
               ))}
               <tr>
-                <th />
-                <th />
-                <th />
-                <th>Shipping Fee</th>
-                <th>SGD {shippingFee}</th>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td><strong>Shipping Fee (SGD)</strong></td>
+                <td className="text-right">{shippingFee}</td>
               </tr>
               <tr>
-                <th />
-                <th>Total Items</th>
-                <th>{totalItems}</th>
-                <th>Total</th>
-                <th>SGD {total}</th>
-              </tr>
+                <td></td>
+                <td><strong>Total Items</strong></td>
+                <td className="text-center">{totalItems}</td>
+                <td><strong>Total (SGD)</strong></td>
+                <td className="text-right">
+                  {total}
+                </td> 
+              </tr>  
             </tbody>
           </Table>
           <Row>

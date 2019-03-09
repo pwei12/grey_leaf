@@ -10,7 +10,7 @@ function CartTable( { item: { id, name, quantity, price, subTotal },
     <tr>
       <td>{itemNum}</td>
       <td>{name}</td>
-      <td> 
+      <td className="text-center"> 
         <input 
           type="number" 
           name={`quantity${index}`}
@@ -18,11 +18,12 @@ function CartTable( { item: { id, name, quantity, price, subTotal },
           value={quantity}
           onChange={handleQuantityChange} 
           step="1"
+          className="text-center"
         />
         {error && <div className="alert alert-danger">{error}</div>}
       </td>
-      <td>{price.toFixed(2)}</td>
-      <td>{subTotal.toFixed(2)}</td>
+      <td className="text-right">{price.toFixed(2)}</td>
+      <td className="text-right">{subTotal.toFixed(2)}</td>
     </tr>
   );
 }
