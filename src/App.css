@@ -8,27 +8,38 @@ body {
     position: relative;
 }
 .link {
-    color: #ff7733;
+    color: #e6e6ff;
 }
 .link:hover {
     text-decoration: none;
-    color:   #e64d00;
+    color:   #b3b3ff;
 }
 .link:active {
     text-decoration: none;
-    color:   #ff7733;
+    color:   #e6ffe6;
+}
+.logo-link {
+    color: #6699ff;
+}
+.logo-link:hover {
+    text-decoration: none;
+    color:   #003399;
+}
+.logo-link:active {
+    text-decoration: none;
+    color:   #003399;
 }
 label {
     margin-right: 10px;
 }
 .navbar {
-    background-color: #47476b;
+    background-color: #000066;
 }
 .footer {
     position:absolute;
     bottom:0;
     width:100%;
-    background-color: #47476b;
+    background-color: #000066;
     color: white;       
     padding: 5px;     
   }
