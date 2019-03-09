@@ -153,12 +153,12 @@ export function updateCartList(list) {
 export function getShippingFee() {
     const totalItems = cartList.map(item => item.quantity).reduce((acc,currentValue) => acc+currentValue, 0)
     const shippingFee = totalItems > 10 ? 0 : 5;
-    return shippingFee;
+    return shippingFee.toFixed(2);
 }
 
 export function sumValueInList (list, valueName) {
     return list.map(item => item[valueName])
-    .reduce((acc, currentValue) => acc + currentValue, 0);
+               .reduce((acc, currentValue) => acc + currentValue, 0);
 }
 
 export function setSubTotal(value) {
@@ -166,5 +166,9 @@ export function setSubTotal(value) {
 }
 
 export function getSubTotal() {
-    return subTotal;
+    return subTotal.toFixed(2);
+}
+
+export function getTotal() {
+    return (subTotal + parseInt(getShippingFee())).toFixed(2);
 }

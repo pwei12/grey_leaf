@@ -6,7 +6,8 @@ import {
   updateCartList,
   getShippingFee,
   setSubTotal, 
-  sumValueInList
+  sumValueInList,
+  getTotal
 } from "../../services/productListService";
 import CartTableRow from "../CartTableRow/CartTableRow";
 import Joi from 'joi-browser';
@@ -49,16 +50,15 @@ function Cart() {
       }
       return item;
     });
-    setCartList(updatedCartList);
     updateCartList(updatedCartList);
+    setCartList(getCartList());
     setShippingFee(getShippingFee());
   };
 
   const totalItems = sumValueInList(cartList, "quantity");
   const subTotal = sumValueInList(cartList, "subTotal");
-  const total = subTotal + shippingFee;
-
   setSubTotal(subTotal);      
+  const total = getTotal();
 
   return (
     <Container>
@@ -92,14 +92,14 @@ function Cart() {
                 <th />
                 <th />
                 <th>Shipping Fee</th>
-                <th>SGD {shippingFee.toFixed(2)}</th>
+                <th>SGD {shippingFee}</th>
               </tr>
               <tr>
                 <th />
                 <th>Total Items</th>
                 <th>{totalItems}</th>
                 <th>Total</th>
-                <th>SGD {total.toFixed(2)}</th>
+                <th>SGD {total}</th>
               </tr>
             </tbody>
           </Table>

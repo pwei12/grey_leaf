@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Badge, Row, Col, Button } from "react-bootstrap";
-import { getSubTotal, getShippingFee } from "../../services/productListService";
+import { getSubTotal, getShippingFee, getTotal } from "../../services/productListService";
 
 function Checkout() {
   const [payment, setPayment] = useState(false);
@@ -21,15 +21,15 @@ function Checkout() {
       </Row>
       <Row>
         <Col>Subtotal</Col>
-        <Col>SGD {getSubTotal()}</Col>
+        <Col className="text-right">SGD {getSubTotal()}</Col>
       </Row>
       <Row>
         <Col>Shipping Fee</Col>
-        <Col>SGD {getShippingFee()}</Col>
+        <Col className="text-right">SGD {getShippingFee()}</Col>
       </Row>
       <Row>
         <Col>Total</Col>
-        <Col>SGD {getSubTotal() + getShippingFee()}</Col>
+        <Col className="text-right">SGD {getTotal()}</Col>
       </Row>
       <Button variant="warning" onClick={toPay}>
           Checkout
