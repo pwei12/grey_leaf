@@ -7,7 +7,6 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Brand_Logo from '../../assets/logo.jpg'
-import "./Logo.css";
 
 function Logo() {
   return (

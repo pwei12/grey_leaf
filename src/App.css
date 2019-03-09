@@ -6,5 +6,19 @@ body {
     margin: 0;
     min-height: 100%;
     position: relative;
-    /* overflow: auto; */
+}
+.link {
+    color: #ff7733;
+}
+.link:hover {
+    text-decoration: none;
+    color:   #e64d00;
+}
+.link:active {
+    text-decoration: none;
+    color:   #ff7733;
+}
+.link:visited {
+    text-decoration: none;
+    color:  #ff7733;
 }

@@ -65,7 +65,7 @@ function Cart() {
       {cartList.length < 1 ? (
         <h1>No item added to cart</h1>
       ) : (
-        <div>
+        <div className="mb-5">
           <Table striped bordered hover className="mt-3">
             <thead>
               <tr>
