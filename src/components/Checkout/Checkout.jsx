@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Badge, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { getSubTotal, getShippingFee, getTotal } from "../../services/productListService";
 
 function Checkout() {
@@ -12,28 +12,30 @@ function Checkout() {
 
   return (
     <Container>
-      <Row className="justify-content-md-center">
-        <Col lg={6}>
-          <h1>
-            <Badge variant="Secondary">Order Summary</Badge>
-          </h1>
+      <Row className="justify-content-center">
+        <Col xs="auto" sm="auto">
+            <h3>Order Summary</h3>
         </Col>
       </Row>
       <Row>
         <Col>Subtotal</Col>
-        <Col className="text-right">SGD {getSubTotal()}</Col>
+        <Col className="text-right">{getSubTotal()}</Col>
       </Row>
       <Row>
         <Col>Shipping Fee</Col>
-        <Col className="text-right">SGD {getShippingFee()}</Col>
+        <Col className="text-right">{getShippingFee()}</Col>
       </Row>
       <Row>
-        <Col>Total</Col>
-        <Col className="text-right">SGD {getTotal()}</Col>
+        <Col><strong>Total (SGD)</strong></Col>
+        <Col className="text-right">{getTotal()}</Col>
       </Row>
-      <Button variant="warning" onClick={toPay}>
-          Checkout
-      </Button>
+      <Row className="justify-content-center">
+        <Col xs="auto" sm="auto">
+          <Button variant="warning" onClick={toPay} className="mt-3">
+            Checkout
+          </Button>
+        </Col> 
+      </Row>
 
       { payment && alert(
        " Congratulation! Payment is successfully done.")
