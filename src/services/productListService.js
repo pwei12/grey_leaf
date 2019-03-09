@@ -2,7 +2,7 @@ let productList = [
     {
         id: "57eUYHIIIH0",
         name: "Red Flower Soap",
-        price: 20.00,
+        price: 2.99,
         description: "red flower petals on table. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
         imageUrl: "https://images.unsplash.com/photo-1547793548-7a0e7dfdb24f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjU5NTA2fQ",
         inCart: false,
@@ -11,7 +11,7 @@ let productList = [
     {
         id: "T3_G_0nTXPE",
         name: "Red Rose Soap",
-        price: 13.90,
+        price: 3.90,
         description: "red rose petals. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
         imageUrl: "https://images.unsplash.com/photo-1547793549-70faf88838c8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjU5NTA2fQ",
         inCart: false,
@@ -29,7 +29,7 @@ let productList = [
     {
         id: "FbrDS0jY_Hw",
         name: "Assorted Bar Soap",
-        price: 30.00,
+        price: 9.50,
         description: "assorted bar soaps. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
         imageUrl: "https://images.unsplash.com/photo-1546552768-9e3a94b38a59?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjU5NTA2fQ",
         inCart: false,
@@ -47,7 +47,7 @@ let productList = [
     {
         id: "J4wNtLfEnr0",
         name: "Soap XYZ",
-        price: 21.50,
+        price: 5.80,
         description: "gray steel faucet. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
         imageUrl: "https://images.unsplash.com/photo-1418754356805-b89082b6965e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjU5NTA2fQ",
         inCart: false,
@@ -64,8 +64,8 @@ let productList = [
     },
     {
         id: "ntyA35WOb-k",
-        name: "SOap Packs",
-        price: 29.00,
+        name: "Soap Packs",
+        price: 6.90,
         description: "assorted-color soap packs. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
         imageUrl: "https://images.unsplash.com/photo-1526366003456-b6be088cf674?ixlib=rb-1.2.1&q=80&fm=jpg&auto=format&fit=crop&w=500&max-h=330&q=60",
         inCart: false,
@@ -74,7 +74,7 @@ let productList = [
     {
         id: "fL5xqqoUVF0",
         name: "Soap ABC",
-        price: 42.80,
+        price: 4.60,
         description: "embroidery near textile. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
         imageUrl: "https://images.unsplash.com/photo-1466027449668-27f96b692ba4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjU5NTA2fQ",
         inCart: false,
@@ -83,7 +83,7 @@ let productList = [
     {
         id: "mL3sqqotVFi",
         name: "Soap JK-L",
-        price: 42.80,
+        price: 3.60,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumadsg adsle",
         imageUrl: "https://images.unsplash.com/photo-1454873019514-eae2f086587a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         inCart: false,
