@@ -66,6 +66,11 @@ function Cart() {
         <h1>No item added to cart</h1>
       ) : (
         <div className="mb-5">
+        <Row className="justify-content-center mt-3">
+          <Col xs="auto" sm="auto">
+            <h3>Shopping Cart</h3>
+          </Col>
+        </Row>
           <Table striped bordered hover className="mt-3">
             <thead>
               <tr>
@@ -105,8 +110,8 @@ function Cart() {
               </tr>  
             </tbody>
           </Table>
-          <Row>
-            <Col xs={12} sm={12} md={12} lg={12}>
+          <Row className="justify-content-center">
+            <Col xs="auto" sm="auto">
               <Button variant="primary">
                 <Link to="/cart/checkout" className="text-white link">
                   Proceed to Checkout
