@@ -2,33 +2,37 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import {
+  getCartList,
   getProductById,
   addToCartList,
   toggleInCart,
-  updateProductList
+  updateProductList,
+  getCartProductById
 } from "../../services/productListService";
 
 function ProductDetails({ match }) {
-  const [quantity, setQuantity] = useState(1);
-  const [addedToCart, setAddedToCart] = useState(false);
-
   const product = getProductById(match.params.id);
   const { id, name, price, description, imageUrl, inCart } = product;
-
+  const [quantity, setQuantity] = useState(1);
+  const [addedToCart, setAddedToCart] = useState(false);
   useEffect(() => {
+    if (getCartList().length > 0) {
+      const cartProduct = getCartProductById(id);
+      if (cartProduct) {
+        setQuantity(cartProduct.quantity);
+      }
+    }
     setAddedToCart(inCart);
-  }, [setAddedToCart]);
+  });
 
   const handleQuantityChange = event => {
     setQuantity(parseInt(event.target.value));
   };
-
-  const handleAddToCart = e => {
-    e.preventDefault();
+  const handleAddToCart = event => {
     const updatedProductList = toggleInCart(id);
     updateProductList(updatedProductList);
-    setAddedToCart(!addedToCart);
     addToCartList(id, quantity);
+    setAddedToCart(!inCart);
   };
 
   return (
@@ -42,35 +46,37 @@ function ProductDetails({ match }) {
           <p>${`${price.toFixed(2)}`}</p>
           <p>{description}</p>
 
-          <form name="quantity" onSubmit={handleAddToCart}>
-            <label htmlFor="quantity">Quantity:</label>
-            <input
-              id="quantity"
-              type="number"
-              placeholder="1"
-              onChange={handleQuantityChange}
-              value={quantity}
-              min="1"
-              max="50"
-              disabled={addedToCart}
-            />
-            <Row className="my-3">
-              <Col>
-                <Button type="submit" disabled={addedToCart}>
-                  {addedToCart ? "Added to Cart" : "Add to Cart"}
-                </Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Button type="button">
-                  <Link to="/cart" className="text-white link">
-                    Go to Shopping Cart
-                  </Link>
-                </Button>
-              </Col>
-            </Row>
-          </form>
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            id="quantity"
+            type="number"
+            placeholder="1"
+            onChange={handleQuantityChange}
+            value={quantity}
+            min="1"
+            max="50"
+            disabled={addedToCart}
+          />
+          <Row className="my-3">
+            <Col>
+              <Button
+                type="submit"
+                onClick={handleAddToCart}
+                disabled={addedToCart}
+              >
+                {addedToCart ? "Added to Cart" : "Add to Cart"}
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button type="button">
+                <Link to="/cart" className="text-white link">
+                  Go to Shopping Cart
+                </Link>
+              </Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Container>

@@ -1,6 +1,7 @@
 import React from "react";
 
-function CartTable( { item: { id, name, quantity, price, subTotal }, 
+function CartTableRow( 
+  { item: { id, name, quantity, price, subTotal }, 
   itemNum, 
   handleQuantityChange, 
   error, 
@@ -28,4 +29,4 @@ function CartTable( { item: { id, name, quantity, price, subTotal },
   );
 }
 
-export default CartTable;
+export default CartTableRow;

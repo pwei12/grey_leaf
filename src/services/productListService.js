@@ -119,7 +119,9 @@ export function getAllProducts() {
 export function getProductById(id) {
     return productList.find(product => product.id === id)
 }
-
+export function getCartProductById(id) {
+    return cartList.find(product => product.id === id)
+}
 export function updateProductList(list) {
     productList = [...list];
 }

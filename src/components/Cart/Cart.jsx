@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Joi from 'joi-browser';
 import { Container, Table, Button, Row, Col } from "react-bootstrap";
 import {
   getCartList,
@@ -10,7 +11,6 @@ import {
   getTotal
 } from "../../services/productListService";
 import CartTableRow from "../CartTableRow/CartTableRow";
-import Joi from 'joi-browser';
 
 function Cart() {
   const [cartList, setCartList] = useState([]);
