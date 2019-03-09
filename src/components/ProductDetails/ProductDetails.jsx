@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Joi from "joi-browser";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import {
   getCartList,
@@ -15,6 +16,8 @@ function ProductDetails({ match }) {
   const { id, name, price, description, imageUrl, inCart } = product;
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [error, setError] = useState('');
+
   useEffect(() => {
     if (getCartList().length > 0) {
       const cartProduct = getCartProductById(id);
@@ -25,9 +28,27 @@ function ProductDetails({ match }) {
     setAddedToCart(inCart);
   });
 
-  const handleQuantityChange = event => {
-    setQuantity(parseInt(event.target.value));
+  const schema = {
+    quantity: Joi.number().min(1).max(50).required()
+  }
+
+  const validateQuantity = value => {
+    const obj = { quantity: value };
+    const { error } = Joi.validate(obj, schema);
+    return error ? error.details[0].message : null;
   };
+
+  const handleQuantityChange = event => {
+    const inputQuantity = event.target.value;
+    const errorMsg = validateQuantity(inputQuantity);
+    if(errorMsg) {
+      setError(errorMsg);
+    } else {
+      setError("")
+      setQuantity(parseInt(inputQuantity));
+    }
+  };
+
   const handleAddToCart = event => {
     const updatedProductList = toggleInCart(id);
     updateProductList(updatedProductList);
@@ -50,13 +71,11 @@ function ProductDetails({ match }) {
           <input
             id="quantity"
             type="number"
-            placeholder="1"
             onChange={handleQuantityChange}
             value={quantity}
-            min="1"
-            max="50"
             disabled={addedToCart}
           />
+          {error && (<div className="alert alert-danger">{error}</div>)}
           <Row className="my-3">
             <Col>
               <Button
