@@ -10,7 +10,7 @@ function BestSellers() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Col xs={6} sm="auto">
+        <Col xs={12} sm={8} md={6}>
           <Carousel>
             <Carousel.Item>
               <img
