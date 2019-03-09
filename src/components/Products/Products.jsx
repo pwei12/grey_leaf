@@ -20,16 +20,9 @@ function Products() {
   }, [setProductList]);
 
   const handleAddToCart = (id, quantity) => {
-    //toggle incart and get the updated productlist
     const updatedProductList = toggleInCart(id);
-    
-    //update state 
     setProductList(updatedProductList);
-
-    //update data 
     updateProductList(updatedProductList);
-
-    //add product into cartList
     addToCartList(id, quantity);
   }
 

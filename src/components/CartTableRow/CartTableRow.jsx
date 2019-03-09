@@ -1,7 +1,11 @@
 import React from "react";
 
-function CartTable({ item: { id, name, quantity, price, subTotal }, itemNum, handleQuantityChange }) {
-
+function CartTable( { item: { id, name, quantity, price, subTotal }, 
+  itemNum, 
+  handleQuantityChange, 
+  error, 
+  index }) 
+  {
   return (
     <tr>
       <td>{itemNum}</td>
@@ -9,14 +13,13 @@ function CartTable({ item: { id, name, quantity, price, subTotal }, itemNum, han
       <td> 
         <input 
           type="number" 
+          name={`quantity${index}`}
           id={id}
           value={quantity}
           onChange={handleQuantityChange} 
           step="1"
-          min="1"
-          max="50"
         />
-        {/* {error && <div className="alert alert-danger">{error}</div>} */}
+        {error && <div className="alert alert-danger">{error}</div>}
       </td>
       <td>{price.toFixed(2)}</td>
       <td>{subTotal.toFixed(2)}</td>

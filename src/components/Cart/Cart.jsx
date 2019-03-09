@@ -5,43 +5,57 @@ import {
   getCartList,
   updateCartList,
   getShippingFee,
-  setSubTotal
+  setSubTotal, 
+  sumValueInList
 } from "../../services/productListService";
 import CartTableRow from "../CartTableRow/CartTableRow";
+import Joi from 'joi-browser';
 
 function Cart() {
   const [cartList, setCartList] = useState([]);
   const [shippingFee, setShippingFee] = useState(0);
+  const [error, setError] = useState({});
 
   useEffect(() => {
     setCartList(getCartList());
     setShippingFee(getShippingFee());
   });
 
-    const handleQuantityChange = e => {
-    const id = e.target.id;
-    // update cartlist in state
+  const schema = {
+    quantity: Joi.number().min(1).max(50).required()
+  }
+  
+  const validateQuantity = value => {
+    const obj = { quantity: value };
+    const { error } = Joi.validate(obj, schema);
+    return error ? error.details[0].message : null;
+  };
+
+  const handleQuantityChange = e => {
+    const {id, name, value} = e.target;
     const updatedCartList = cartList.map(item => {
       if (item.id === id) {
-        const quantity = parseInt(e.target.value);
+        const quantity = parseInt(value);
+        const errorMsg = validateQuantity(quantity);
+        if (errorMsg){ 
+          const copy = {...error} 
+          copy[name]=errorMsg
+          setError(copy);
+        } else {
+          delete error[name];
+        }
         const subTotal = quantity * item.price;
         return { ...item, quantity , subTotal };
       }
       return item;
     });
     setCartList(updatedCartList);
-    //update cartlist in data
     updateCartList(updatedCartList);
-
-    //update shipping fee in state
     setShippingFee(getShippingFee());
   };
 
-  const totalItems = cartList.map(item => item.quantity).reduce((acc, currentValue) => acc + currentValue, 0);
-  const subTotal =
-    cartList
-      .map(item => item.subTotal)
-      .reduce((acc, currentValue) => acc + currentValue, 0)
+  const totalItems = sumValueInList(cartList, "quantity");
+  const subTotal = sumValueInList(cartList, "subTotal");
   const total = subTotal + shippingFee;
 
   setSubTotal(subTotal);      
@@ -52,7 +66,7 @@ function Cart() {
         <h1>No item added to cart</h1>
       ) : (
         <div>
-          <Table striped bordered hover responsive="md" className="mt-3">
+          <Table striped bordered hover className="mt-3">
             <thead>
               <tr>
                 <th>#</th>
@@ -69,6 +83,8 @@ function Cart() {
                   item={item}
                   itemNum={index + 1}
                   handleQuantityChange={handleQuantityChange}
+                  error={error[`quantity${index}`]}
+                  index={index}
                 />
               ))}
               <tr>
@@ -88,7 +104,7 @@ function Cart() {
             </tbody>
           </Table>
           <Row>
-            <Col xs={12} sm={12} md={12} lg={6}>
+            <Col xs={12} sm={12} md={12} lg={12}>
               <Button variant="primary">
                 <Link to="/cart/checkout" className="text-white link">
                   Proceed to Checkout
