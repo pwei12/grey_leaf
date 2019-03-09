@@ -1,21 +1,16 @@
 import React from "react";
-import { 
-  Container, 
-  Image, 
-  Col, 
-  Row 
-} from "react-bootstrap";
+import { Container, Image, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Brand_Logo from '../../assets/logo.jpg'
+import Brand_Logo from "../../assets/logo.jpg";
 
 function Logo() {
   return (
-    <Container >
-      <Row className="justify-content-md-center">
-        <Col md="auto">
+    <Container>
+      <Row className="justify-content-center">
+        <Col xs={6} sm="auto">
           <Link to="/" className="link">
-            <Image src={Brand_Logo} fluid className="mx-auto" />
-            <h1>Grey Leaf</h1>
+            <Image src={Brand_Logo} fluid roundedCircle thumbnail className="mx-auto" />
+            <h1 className="text-nowrap"><strong><em>Grey Leaf</em></strong></h1>
           </Link>
         </Col>
       </Row>

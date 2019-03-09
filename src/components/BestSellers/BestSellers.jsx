@@ -4,13 +4,13 @@ import { Container, Row, Col, Carousel } from "react-bootstrap";
 function BestSellers() {
   return (
     <Container fluid>
-      <Row className="justify-content-md-center">
-        <Col xs={12} sm={6} md="auto">
+      <Row className="justify-content-center">
+        <Col xs={6} sm="auto">
           <h3>Best Sellers</h3>
         </Col>
       </Row>
-      <Row className="justify-content-md-center">
-        <Col md={4} xs={12} sm={6}>
+      <Row className="justify-content-center">
+        <Col xs={6} sm="auto">
           <Carousel>
             <Carousel.Item>
               <img
