@@ -38,7 +38,7 @@ function Checkout() {
       </Row>
 
       { payment && alert(
-       " Congratulation! Payment is successfully done.")
+       "Proceed to payment page?")
       }
     </Container>
   );
