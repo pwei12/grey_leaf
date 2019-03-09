@@ -2,9 +2,9 @@ import "react-testing-library/cleanup-after-each";
 import "jest-dom/extend-expect";
 import React from "react";
 import { render } from "react-testing-library";
-import Product from "./Product";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
+import Product from "./Product";
 
 describe("Product", () => {
   const props = {

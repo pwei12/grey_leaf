@@ -2,21 +2,21 @@ import 'react-testing-library/cleanup-after-each';
 import 'jest-dom/extend-expect';
 import React from 'react';
 import {render} from 'react-testing-library';
-import Shop from './Shop';
+import App
 
-describe('Shop', () => {
+describe('Products', () => {
     const productList = [
        {
         name: "Charcoal135",
-        price: "20",
-        imageUrl: "assets/AllProducts/charcoal135soap.jpg",
+        price: "2.90",
+        imageUrl: "https://images.unsplash.com/photo-1547793548-7a0e7dfdb24f",
         description: "made of charcoal"
         },
        { 
         name: "Mugwort24",
-        price: "28",
-        imageUrl: "assets/AllProducts/mugwort24b.jpg",
-        description: "sdogijweg"
+        price: "3.20",
+        imageUrl: "https://images.unsplash.com/photo-1526366003456-b6be088cf674",
+        description: "sdogijweg -sjen23r L1*#^!dsg"
         }
     ]
     test("It renders all product", () => {
