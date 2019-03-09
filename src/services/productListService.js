@@ -156,15 +156,15 @@ export function getShippingFee() {
     return shippingFee;
 }
 
+export function sumValueInList (list, valueName) {
+    return list.map(item => item[valueName])
+    .reduce((acc, currentValue) => acc + currentValue, 0);
+}
+
 export function setSubTotal(value) {
     subTotal = value;
 }
 
 export function getSubTotal() {
     return subTotal;
-}
-
-export function sumValueInList (list, valueName) {
-    return list.map(item => item[valueName])
-               .reduce((acc, currentValue) => acc + currentValue, 0);
 }
