@@ -65,12 +65,12 @@ function Cart() {
       {cartList.length < 1 ? (
         <h1>No item added to cart</h1>
       ) : (
-        <div className="mb-5">
-        <Row className="justify-content-center mt-3">
-          <Col xs="auto" sm="auto">
-            <h3>Shopping Cart</h3>
-          </Col>
-        </Row>
+        <div>
+          <Row className="justify-content-center mt-3">
+            <Col xs="auto" sm="auto">
+              <h3>Shopping Cart</h3>
+            </Col>
+          </Row>
           <Table striped bordered hover className="mt-3">
             <thead>
               <tr>
@@ -110,7 +110,7 @@ function Cart() {
               </tr>  
             </tbody>
           </Table>
-          <Row className="justify-content-center">
+          <Row className="justify-content-center pb-5">
             <Col xs="auto" sm="auto">
               <Button variant="primary">
                 <Link to="/cart/checkout" className="text-white link">

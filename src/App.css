@@ -18,7 +18,17 @@ body {
     text-decoration: none;
     color:   #ff7733;
 }
-.link:visited {
-    text-decoration: none;
-    color:  #ff7733;
+label {
+    margin-right: 10px;
 }
+.navbar {
+    background-color: #47476b;
+}
+.footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    background-color: #47476b;
+    color: white;       
+    padding: 5px;     
+  }

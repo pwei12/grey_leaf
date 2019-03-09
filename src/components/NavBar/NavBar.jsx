@@ -1,30 +1,25 @@
 import React from "react";
-import {
-  Nav,
-  Navbar
-} from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import "./NavBar.css"
 
 function NavBar() {
   return (
-    <Navbar expand="lg" variant="light" className="navbar">
-        
-        <Nav className="d-flex justify-content-sm-center">
-          <NavLink to="/" className="mr-3 navbarlink">
-            Home
-          </NavLink>
-          <NavLink to="/products" className="mr-3 navbarlink">
-            Products
-          </NavLink>
-          <NavLink to="/contact" className="mr-3 navbarlink">
-            Contact
-          </NavLink>
-          <NavLink to="/cart" className="mr-3 navbarlink">
-            Shopping Cart
-          </NavLink>
-        </Nav>
-      </Navbar>
+    <Navbar expand="sm" className="navbar">
+      <Nav>
+        <NavLink to="/" className="pr-5 link">
+          Home
+        </NavLink>
+        <NavLink to="/products" className="pr-5 link">
+          Products
+        </NavLink>
+        <NavLink to="/contact" className="pr-5 link">
+          Contact
+        </NavLink>
+        <NavLink to="/cart" className="pr-5 link">
+          Shopping Cart
+        </NavLink>
+      </Nav>
+    </Navbar>
   );
 }
 
