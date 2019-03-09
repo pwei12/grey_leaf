@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Joi from 'joi-browser';
+import Joi from "joi-browser";
 import { Container, Table, Button, Row, Col } from "react-bootstrap";
 import {
   getCartList,
   updateCartList,
   getShippingFee,
-  setSubTotal, 
+  setSubTotal,
   sumValueInList,
   getTotal
 } from "../../services/productListService";
@@ -23,9 +23,12 @@ function Cart() {
   });
 
   const schema = {
-    quantity: Joi.number().min(1).max(50).required()
-  }
-  
+    quantity: Joi.number()
+      .min(1)
+      .max(50)
+      .required()
+  };
+
   const validateQuantity = value => {
     const obj = { quantity: value };
     const { error } = Joi.validate(obj, schema);
@@ -33,31 +36,31 @@ function Cart() {
   };
 
   const handleQuantityChange = e => {
-    const {id, name, value} = e.target;
-    const updatedCartList = cartList.map(item => {
-      if (item.id === id) {
-        const quantity = parseInt(value);
-        const errorMsg = validateQuantity(quantity);
-        if (errorMsg){ 
-          const copy = {...error} 
-          copy[name]=errorMsg
-          setError(copy);
-        } else {
-          delete error[name];
+    const { id, name, value } = e.target;
+    const quantity = parseInt(value);
+    const errorMsg = validateQuantity(quantity);
+    if (errorMsg) {
+      const copy = { ...error };
+      copy[name] = errorMsg;
+      setError(copy);
+    } else {
+      delete error[name];
+      const updatedCartList = cartList.map(item => {
+        if (item.id === id) {
+          const subTotal = quantity * item.price;
+          return { ...item, quantity, subTotal };
         }
-        const subTotal = quantity * item.price;
-        return { ...item, quantity , subTotal };
-      }
-      return item;
-    });
-    updateCartList(updatedCartList);
-    setCartList(getCartList());
-    setShippingFee(getShippingFee());
+        return item;
+      });
+      updateCartList(updatedCartList);
+      setCartList(getCartList());
+      setShippingFee(getShippingFee());
+    }
   };
 
   const totalItems = sumValueInList(cartList, "quantity");
   const subTotal = sumValueInList(cartList, "subTotal");
-  setSubTotal(subTotal);      
+  setSubTotal(subTotal);
   const total = getTotal();
 
   return (
@@ -93,21 +96,25 @@ function Cart() {
                 />
               ))}
               <tr>
-                <td></td> 
-                <td></td>
-                <td></td>
-                <td><strong>Shipping Fee (SGD)</strong></td>
+                <td />
+                <td />
+                <td />
+                <td>
+                  <strong>Shipping Fee (SGD)</strong>
+                </td>
                 <td className="text-right">{shippingFee}</td>
               </tr>
               <tr>
-                <td></td>
-                <td><strong>Total Items</strong></td>
+                <td />
+                <td>
+                  <strong>Total Items</strong>
+                </td>
                 <td className="text-center">{totalItems}</td>
-                <td><strong>Total (SGD)</strong></td>
-                <td className="text-right">
-                  {total}
-                </td> 
-              </tr>  
+                <td>
+                  <strong>Total (SGD)</strong>
+                </td>
+                <td className="text-right">{total}</td>
+              </tr>
             </tbody>
           </Table>
           <Row className="justify-content-center pb-5">
