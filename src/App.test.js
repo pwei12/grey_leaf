@@ -8,7 +8,7 @@ import { createMemoryHistory } from "history";
 import App from "./App";
 import * as ProductListService from "./services/productListService";
 
-describe("App", () => {
+describe("Products Page", () => {
   const sampleData = [
     {
       id: "GE23cTcUXww",
@@ -43,8 +43,9 @@ describe("App", () => {
     ProductListService.getAllProducts.mockRestore();
   });
 
- test("Add item to shopping cart by clicking on 'Add to Cart' button", () => {
-    const history = createMemoryHistory({ initialEntries: ["/"] });
+  const history = createMemoryHistory({ initialEntries: ["/"] });
+
+  test("Add item to shopping cart by clicking on 'Add to Cart' button", () => {
     const { getByText } = render(
       <Router history={history}>
         <App />
@@ -61,18 +62,68 @@ describe("App", () => {
   });
 
   test("'Add to Cart' button is disabled after being clicked once and change text to 'Added to Cart'", () => {
-    const history = createMemoryHistory({ initialEntries: ["/"] });
     const { getByText } = render(
       <Router history={history}>
         <App />
       </Router>
     );
-    const productsLink = getByText(/products/i);
-    fireEvent.click(productsLink);
-    const buttonAddToCart = getByText(/Add to Cart/i);
-    fireEvent.click(buttonAddToCart);
+    fireEvent.click(getByText(/products/i));
+    fireEvent.click(getByText(/Add to Cart/i));
     const buttonAddedToCart = getByText(/Added to Cart/i)
     expect(buttonAddedToCart).toBeInTheDocument();
     expect(buttonAddedToCart).toHaveAttribute("disabled");
   });
+
+  test.skip("'Add to Cart' button remains disabled after navigated back from other pages", () => {
+    const { getByText, debug } = render(
+      <Router history={history}>
+        <App />
+      </Router>
+    );
+    fireEvent.click(getByText(/products/i)); //click on navlink to products page
+    fireEvent.click(getByText(/Add to Cart/i)); //click on button
+    fireEvent.click(getByText(/contact/i)); //click on navlink to contacts page
+    fireEvent.click(getByText(/products/i)); //click on navlink to navigate back to products page
+    debug()
+    // const buttonAddedToCart = getByText(/Added to Cart/i);
+    // expect(buttonAddedToCart).toBeInTheDocument();
+    // expect(buttonAddedToCart).toHaveAttribute("disabled");
+  });
+});
+
+ describe("Navigation Bar", () => {
+  const history = createMemoryHistory({ initialEntries: ["/"]});
+   test("There are 'Home', 'Products', Contact' and 'Shopping Cart' links on Navbar", () => {
+    const { getByText } = render(
+      <Router history={history}>
+        <App />
+      </Router>
+    );
+    expect(getByText('Home')).toBeInTheDocument();
+    expect(getByText('Products')).toBeInTheDocument();
+    expect(getByText('Contact')).toBeInTheDocument();
+    expect(getByText('Shopping Cart')).toBeInTheDocument();
+   });
+
+   test("It shows the corresponding pages after clicking on the links on Navbar", () => {
+     const { getByText } = render(
+       <Router history = {history}>
+         <App />
+       </Router> 
+     )
+     fireEvent.click(getByText(/products/i));
+     expect(getByText(/add to cart/i)).toBeInTheDocument();
+
+     fireEvent.click(getByText(/contact/i));
+     expect(getByText(/whatsapp/i)).toBeInTheDocument();
+     expect(getByText(/facebook/i)).toBeInTheDocument();
+     expect(getByText(/instagram/i)).toBeInTheDocument();
+
+     fireEvent.click(getByText(/shopping cart/i));
+     expect(getByText(/no item added/i)).toBeInTheDocument();
+
+     fireEvent.click(getByText(/home/i));
+     expect(getByText(/best sellers/i)).toBeInTheDocument();
+     expect(getByText(/welcome to/i)).toBeInTheDocument();
+   });
  });
