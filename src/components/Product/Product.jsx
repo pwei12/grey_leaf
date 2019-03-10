@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { 
   Card,
@@ -29,4 +30,7 @@ function Product({ product, handleAddToCart }) {
   );
 }
 
+Product.propTypes = {
+  product: PropTypes.object.isRequired
+}
 export default Product;

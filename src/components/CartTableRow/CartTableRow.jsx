@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 
 function CartTableRow({
@@ -37,6 +38,15 @@ function CartTableRow({
       </td>
     </tr>
   );
+}
+
+CartTableRow.propTypes = {
+  item: PropTypes.object.isRequired,
+  itemNum: PropTypes.number.isRequired,
+  handleQuantityChange: PropTypes.func.isRequired,
+  handleDeleteItem: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  index: PropTypes.number.isRequired
 }
 
 export default CartTableRow;
