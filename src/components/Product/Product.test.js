@@ -2,6 +2,7 @@ import "react-testing-library/cleanup-after-each";
 import "jest-dom/extend-expect";
 import React from "react";
 import { render } from "react-testing-library";
+import { fireEvent } from "react-testing-library/dist";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import Product from "./Product";
@@ -53,6 +54,6 @@ describe("Product", () => {
         <Product product={props} />
       </Router>
     );
-    expect(getByText("Add to Cart")).toBeInTheDocument();
+    expect(getByText(/Add to Cart/i)).toBeInTheDocument();
   });
 });
