@@ -119,7 +119,7 @@ function Cart() {
               <tr>
                 <td />
                 <td>
-                  <strong>Total Items</strong>
+                  <strong>Total Item(s)</strong>
                 </td>
                 <td className="text-center">{totalItems}</td>
                 <td>
