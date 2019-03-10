@@ -126,10 +126,10 @@ export function updateProductList(list) {
     productList = [...list];
 }
 
-export function toggleInCart(id) {
+export function togglePropInCart(id) {
     const updatedProductList = productList.map(product => {
         if (product.id === id) {
-            const updatedProduct = { ...product, inCart: !product.incart };
+            const updatedProduct = { ...product, inCart: !product.inCart };
             return updatedProduct;
         }
         return product;

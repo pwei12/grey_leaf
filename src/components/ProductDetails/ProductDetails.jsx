@@ -6,7 +6,7 @@ import {
   getCartList,
   getProductById,
   addToCartList,
-  toggleInCart,
+  togglePropInCart,
   updateProductList,
   getCartProductById
 } from "../../services/productListService";
@@ -50,7 +50,7 @@ function ProductDetails({ match }) {
   };
 
   const handleAddToCart = event => {
-    const updatedProductList = toggleInCart(id);
+    const updatedProductList = togglePropInCart(id);
     updateProductList(updatedProductList);
     addToCartList(id, quantity);
     setAddedToCart(!inCart);

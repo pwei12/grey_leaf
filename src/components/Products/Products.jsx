@@ -7,7 +7,7 @@ import {
 import {
   getAllProducts,
   addToCartList,
-  toggleInCart,
+  togglePropInCart,
   updateProductList
 } from "../../services/productListService";
 import Product from "../Product/Product";
@@ -17,10 +17,10 @@ function Products() {
 
   useEffect(() => {
     setProductList(getAllProducts);
-  }, [setProductList]);
+  });
 
   const handleAddToCart = (id, quantity) => {
-    const updatedProductList = toggleInCart(id);
+    const updatedProductList = togglePropInCart(id);
     setProductList(updatedProductList);
     updateProductList(updatedProductList);
     addToCartList(id, quantity);

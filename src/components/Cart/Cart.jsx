@@ -8,7 +8,9 @@ import {
   getShippingFee,
   setSubTotal,
   sumValueInList,
-  getTotal
+  getTotal,
+  togglePropInCart,
+  updateProductList
 } from "../../services/productListService";
 import CartTableRow from "../CartTableRow/CartTableRow";
 
@@ -58,6 +60,14 @@ function Cart() {
     }
   };
 
+  const handleDeleteItem = id => {
+    const updatedProductList = togglePropInCart(id);
+    updateProductList(updatedProductList);
+    const updatedCartList = getCartList().filter(item => item.id !== id);
+    updateCartList(updatedCartList);
+    setCartList(updatedCartList)
+  }
+
   const totalItems = sumValueInList(cartList, "quantity");
   const subTotal = sumValueInList(cartList, "subTotal");
   setSubTotal(subTotal);
@@ -91,6 +101,7 @@ function Cart() {
                   item={item}
                   itemNum={index + 1}
                   handleQuantityChange={handleQuantityChange}
+                  handleDeleteItem={handleDeleteItem}
                   error={error[`quantity${index}`]}
                   index={index}
                 />
@@ -103,6 +114,7 @@ function Cart() {
                   <strong>Shipping Fee (SGD)</strong>
                 </td>
                 <td className="text-right">{shippingFee}</td>
+                <td></td>
               </tr>
               <tr>
                 <td />
@@ -114,6 +126,7 @@ function Cart() {
                   <strong>Total (SGD)</strong>
                 </td>
                 <td className="text-right">{total}</td>
+                <td></td>
               </tr>
             </tbody>
           </Table>
