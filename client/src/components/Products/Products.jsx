@@ -5,18 +5,24 @@ import {
   Col 
 } from "react-bootstrap";
 import {
-  getAllProducts,
   addToCartList,
   togglePropInCart,
   updateProductList
 } from "../../services/productListService";
 import Product from "../Product/Product";
+import axios from "axios";
 
 function Products() {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    setProductList(getAllProducts);
+    axios.get("http://localhost:8080/api/v1/products")
+    .then(res => {
+      setProductList(res.data)
+    })
+    .catch(err => {
+      throw new Error(err)
+    })
   });
 
   const handleAddToCart = (id, quantity) => {
@@ -31,7 +37,10 @@ function Products() {
       <Row className="justify-content-md-around pb-5">
         {productList.map(product => (
           <Col xs={12} sm={12} md={6} lg={4} key={product.name}>
-            <Product product={product} handleAddToCart={handleAddToCart} />
+            <Product 
+              product={product} 
+              handleAddToCart={handleAddToCart} 
+            />
           </Col>
         ))}
       </Row>
