@@ -1,32 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import {
+  getAllProducts,
   addToCartList,
   togglePropInCart,
   updateProductList
 } from "../../services/productListService";
 import Product from "../Product/Product";
-import axios from "axios";
 
 function Products() {
   const [productList, setProductList] = useState([]);
-
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/v1/products")
-      .then(res => {
-        setProductList(res.data);
-      })
-      .catch(err => {
-        throw new Error(err);
-      });
+    getAllProducts()
+    .then(res => {
+      setProductList(res.data)
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
   }, [setProductList]);
 
   const handleAddToCart = (id, quantity) => {
     const updatedProductList = togglePropInCart(id);
     setProductList(updatedProductList);
     updateProductList(updatedProductList);
-    addToCartList(id, quantity);
+    // addToCartList(id, quantity);
   };
 
   return (

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 
 function Product({ product, handleAddToCart }) {
-  const { name, price, imageUrl, _id, inCart } = product;
+  const { name, price, url, _id, inCart } = product;
   return (
     <Card className="mb-3">
       <Link to={`/products/${_id}`}>
-        <Card.Img variant="top" src={imageUrl} alt={name} />
+        <Card.Img variant="top" src={url} alt={name} />
       </Link>
 
       <Card.Body>

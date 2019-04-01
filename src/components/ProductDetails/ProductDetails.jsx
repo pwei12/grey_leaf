@@ -3,57 +3,80 @@ import { Link } from "react-router-dom";
 import Joi from "joi-browser";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import {
-  getCartList,
+  addItemToCart,
   getProductById,
-  addToCartList,
-  togglePropInCart,
-  updateProductList,
-  getCartProductById
+  // getCartList,
+  // addToCartList,
+  // togglePropInCart,
+  // updateProductList,
+  // getCartProductById
 } from "../../services/productListService";
 
 function ProductDetails({ match }) {
-  const product = getProductById(match.params.id);
-  const { id, name, price, description, imageUrl, inCart } = product;
+  const id = match.params.id;
+  // const product = getProductById(match.params.id);
+  // const { id, name, price, description, imageUrl, inCart } = product;
+
+  // console.log(price, "PRICE HERERER")
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
-  const [error, setError] = useState('');
-
+  const [imageUrl, setImageUrl] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState(1);
+  const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
   useEffect(() => {
-    if (getCartList().length > 0) {
-      const cartProduct = getCartProductById(id);
-      if (cartProduct) {
-        setQuantity(cartProduct.quantity);
-      }
-    }
-    setAddedToCart(inCart);
+    getProductById(id).then(res => {
+      const product = res.data;
+        const {name, price, d:description, url} = product;
+        setName(name);
+        setPrice(price);
+        setQuantity(1);
+        setImageUrl(url);
+        setDescription(description);
+        console.log("QUANTITY", quantity)
+    }).catch(err => {
+      throw new Error(err);
+    });
+    // if (getCartList().length > 0) {
+    //   const cartProduct = getCartProductById(id);
+    //   if (cartProduct) {
+    //     setQuantity(cartProduct.quantity);
+    //   }
+    // }
+    // setAddedToCart(inCart);
   });
 
-  const schema = {
-    quantity: Joi.number().min(1).max(50).required()
-  }
+  const quantitySchema= {
+    quantity: Joi.number()
+      .min(1)
+      .max(50)
+      .required()
+  };
 
   const validateQuantity = value => {
     const obj = { quantity: value };
-    const { error } = Joi.validate(obj, schema);
+    const { error } = Joi.validate(obj, quantitySchema);
     return error ? error.details[0].message : null;
   };
 
   const handleQuantityChange = event => {
     const inputQuantity = event.target.value;
     const errorMsg = validateQuantity(inputQuantity);
-    if(errorMsg) {
+    if (errorMsg) {
       setError(errorMsg);
     } else {
-      setError("")
+      setError("");
       setQuantity(parseInt(inputQuantity));
     }
   };
 
   const handleAddToCart = event => {
-    const updatedProductList = togglePropInCart(id);
-    updateProductList(updatedProductList);
-    addToCartList(id, quantity);
-    setAddedToCart(!inCart);
+    // const updatedProductList = togglePropInCart(id);
+    // updateProductList(updatedProductList);
+    // addToCartList(id, quantity);
+    // setAddedToCart(!inCart);
+    addItemToCart()
   };
 
   return (
@@ -72,10 +95,10 @@ function ProductDetails({ match }) {
             id="quantity"
             type="number"
             onChange={handleQuantityChange}
-            value={quantity}
+            // value={quantity}
             disabled={addedToCart}
           />
-          {error && (<div className="alert alert-danger">{error}</div>)}
+          {error && <div className="alert alert-danger">{error}</div>}
           <Row className="my-3">
             <Col>
               <Button
