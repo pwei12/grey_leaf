@@ -68,3 +68,24 @@ export const productTableStyles = theme => ({
       marginTop: theme.spacing.unit * 3
     }
   });
+
+  export const navBarStyles = theme => ({
+    root: {
+      flexGrow: 1,
+      background: "#000066"
+    },
+    typography: {
+      flexGrow: 1
+    },
+    link: {
+      color: "#e6e6ff",
+      paddingRight: theme.spacing.unit * 3,
+      "&:hover": {
+        textDecoration: "none",
+        color: "#b3b3ff"
+      },
+      "&:active": {
+        color: "#e6ffe6"
+      }
+    }
+  });

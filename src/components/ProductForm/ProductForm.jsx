@@ -8,7 +8,7 @@ import {
   addNewProduct
 } from "../../services/productListService";
 
-const ProductForm = ({ match, history, classes }) => {
+function ProductForm ({ match, history, classes }) {
   const [data, setData] = useState({
     name: "",
     price: "",
