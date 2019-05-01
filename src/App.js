@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Logo from "../src/components/Logo/Logo";
 import Contact from "../src/components/Contact/Contact";
@@ -9,17 +9,22 @@ import ProductDetails from "../src/components/ProductDetails/ProductDetails";
 import Cart from "../src/components/Cart/Cart";
 import Checkout from "../src/components/Checkout/Checkout";
 import Footer from "../src/components/Footer/Footer";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./App.css"
+import ProductTable from "../src/components/ProductTable/ProductTable";
+import ProductForm from "../src/components/ProductForm/ProductForm";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-      <div>
+        <Fragment>
           <Logo />
           <NavBar />
           <Switch>
+            <Route path="/admin/products/new" component={ProductForm} />
+            <Route path="/admin/products/:id" component={ProductForm} />
+            <Route path="/admin/products" component={ProductTable} />
             <Route path="/cart/checkout" component={Checkout} />
             <Route path="/cart" component={Cart} />
             <Route path="/contact" component={Contact} />
@@ -28,7 +33,7 @@ class App extends Component {
             <Route path="/" exact component={HomePage} />
           </Switch>
           <Footer />
-      </div>
+        </Fragment>
       </BrowserRouter>
     );
   }

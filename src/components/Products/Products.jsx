@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import {
-  addToCartList,
   togglePropInCart,
   updateProductList
 } from "../../services/productListService";
@@ -15,7 +14,6 @@ function Products() {
     const updatedProductList = togglePropInCart(id);
     setProductList(updatedProductList);
     updateProductList(updatedProductList);
-    // addToCartList(id, quantity);
   };
 
   return (
