@@ -1,5 +1,5 @@
 import axios from "axios";
-import getServerUrl from "../services/serverService"
+import getServerUrl from "../services/serverService";
 let cartList = [];
 let subTotal = 0;
 
@@ -13,17 +13,38 @@ let productList = async () => {
   }
 };
 
-export function getAllProducts() {
- return axios.get(getServerUrl("api/v1/products"))
+export async function getAllProducts() {
+  return axios.get(getServerUrl("api/v1/products"));
 }
 
-export function getProductById(id) {
- return axios.get(getServerUrl(`api/v1/products/${id}`));
+export async function getBestSellers() {
+  const allProducts = await axios.get(getServerUrl("api/v1/products"));
+  const bestSellers = allProducts.data.filter(product =>
+    product.bestSeller.match(/yes/i)
+  );
+  return bestSellers;
+}
+
+export async function getProductById(id) {
+  return axios.get(getServerUrl(`api/v1/products/${id}`));
+}
+
+export async function addNewProduct(data) {
+  return axios.post(getServerUrl("api/v1/products"), data);
+}
+
+export async function updateProduct(data, id) {
+  return axios.put(getServerUrl(`api/v1/products/${id}`), data);
+}
+
+export async function deleteProduct(id) {
+  return axios.delete(getServerUrl(`api/v1/products`), { data: id });
 }
 
 export function getCartProductById(id) {
   return cartList.find(product => product.id === id);
 }
+
 export function updateProductList(list) {
   productList = [...list];
 }
