@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Carousel } from "react-bootstrap";
-import { getAllProducts } from "../../services/productListService";
+import { getBestSellers } from "../../services/productListService";
 import { Link } from "react-router-dom";
 
 function BestSellers() {
-  const bestSellerList = getAllProducts().filter(product => product.bestSeller);
+  const [bestSellerList, setBestSellerList] = useState([]);
+
+  async function fetchBestSellers() {
+    try{
+      setBestSellerList(await getBestSellers());
+    }catch(err) {
+      console.log(err);
+    }
+  }
+  
+  useEffect(() => {
+    fetchBestSellers();
+  }, []);
+
   return (
     <div>
       <Container fluid>
@@ -18,7 +31,7 @@ function BestSellers() {
             <Carousel>
               {bestSellerList.map((product, index) => (
                 <Carousel.Item key={index}>
-                  <Link to={`/products/product/${product.id}`}>
+                  <Link to={`/products/${product._id}`}>
                     <img
                       className="d-block w-100"
                       src={product.imageUrl}
