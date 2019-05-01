@@ -18,6 +18,9 @@ function NavBar() {
         <NavLink to="/cart" className="pr-5 link">
           Shopping Cart
         </NavLink>
+        <NavLink to="/login/admin" className="pr-5 link">
+          Admin Login
+        </NavLink>
       </Nav>
     </Navbar>
   );

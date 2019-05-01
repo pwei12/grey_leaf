@@ -13,7 +13,7 @@ let productList = async () => {
   }
 };
 
-export async function getAllProducts() {
+export function getAllProducts() {
   return axios.get(getServerUrl("api/v1/products"));
 }
 
@@ -25,19 +25,19 @@ export async function getBestSellers() {
   return bestSellers;
 }
 
-export async function getProductById(id) {
+export function getProductById(id) {
   return axios.get(getServerUrl(`api/v1/products/${id}`));
 }
 
-export async function addNewProduct(data) {
+export function addNewProduct(data) {
   return axios.post(getServerUrl("api/v1/products"), data);
 }
 
-export async function updateProduct(data, id) {
+export function updateProduct(data, id) {
   return axios.put(getServerUrl(`api/v1/products/${id}`), data);
 }
 
-export async function deleteProduct(id) {
+export function deleteProduct(id) {
   return axios.delete(getServerUrl(`api/v1/products`), { data: id });
 }
 

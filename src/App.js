@@ -11,6 +11,7 @@ import Checkout from "../src/components/Checkout/Checkout";
 import Footer from "../src/components/Footer/Footer";
 import ProductTable from "../src/components/ProductTable/ProductTable";
 import ProductForm from "../src/components/ProductForm/ProductForm";
+import AdminLogin from "../src/components/Login/AdminLogin"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -30,6 +31,7 @@ class App extends Component {
             <Route path="/contact" component={Contact} />
             <Route path="/products/:id" component={ProductDetails} />
             <Route path="/products" component={Products} />
+            <Route path="/login/admin" component={AdminLogin} />
             <Route path="/" exact component={HomePage} />
           </Switch>
           <Footer />
