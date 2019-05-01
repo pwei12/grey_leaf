@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Joi from "joi-browser";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import {
-  addItemToCart,
   getProductById
 } from "../../services/productListService";
 
 function ProductDetails({ match }) {
-  const id = match.params.id;
   const [data, setData] = useState({
     name: "",
     price: "",
@@ -20,7 +17,8 @@ function ProductDetails({ match }) {
   const [error, setError] = useState("");
 
   async function fetchProductById(id) {
-    setData(await getProductById(id));
+    const product = await getProductById(id);
+    setData(product.data);
   }
 
   useEffect(() => {
@@ -53,13 +51,10 @@ function ProductDetails({ match }) {
   };
 
   const handleAddToCart = event => {
-    // const updatedProductList = togglePropInCart(id);
-    // updateProductList(updatedProductList);
-    // addToCartList(id, quantity);
-    // setAddedToCart(!inCart);
-    addItemToCart()
+    setAddedToCart(true);
   };
 
+  const { name, price, imageUrl, description } = data;
   return (
     <Container className="pb-5">
       <Row className="justify-content-md-end">
@@ -68,7 +63,7 @@ function ProductDetails({ match }) {
         </Col>
         <Col xs={12} sm={6} md={8} lg={8}>
           <h3>{name}</h3>
-          <p>${`${price.toFixed(2)}`}</p>
+          <p>${price}</p>
           <p>{description}</p>
 
           <label htmlFor="quantity">Quantity:</label>
@@ -76,7 +71,7 @@ function ProductDetails({ match }) {
             id="quantity"
             type="number"
             onChange={handleQuantityChange}
-            // value={quantity}
+            value={quantity}
             disabled={addedToCart}
           />
           {error && <div className="alert alert-danger">{error}</div>}
@@ -88,15 +83,6 @@ function ProductDetails({ match }) {
                 disabled={addedToCart}
               >
                 {addedToCart ? "Added to Cart" : "Add to Cart"}
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Button type="button">
-                <Link to="/cart" className="text-white link">
-                  Go to Shopping Cart
-                </Link>
               </Button>
             </Col>
           </Row>
