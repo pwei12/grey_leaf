@@ -64,13 +64,6 @@ export function addItemToCart(userId, item) {
   return axios.post(getServerUrl(`api/v1/users/${userId}/cart`), item);
 }
 
-// export function addToCartList(id, quantity) {
-//   const product = productList.find(product => product.id === id);
-//   const subTotal = product.price * quantity;
-//   const addedProduct = { ...product, quantity, subTotal, inCart: true };
-//   cartList.push(addedProduct);
-// }
-
 export function getCartList() {
   return cartList;
 }
