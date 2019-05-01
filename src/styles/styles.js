@@ -35,7 +35,7 @@ export const productTableStyles = theme => ({
     }
   });
 
-  export const adminLoginStyles = theme => ({
+  export const formStyles = theme => ({
     main: {
       width: "auto",
       display: "block", // Fix IE 11 issue.

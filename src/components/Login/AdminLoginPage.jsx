@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -9,7 +9,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { adminLoginStyles } from "../../styles/styles";
+import { formStyles } from "../../styles/styles";
 import { adminLogin } from "../../services/authService";
 
 function AdminLoginPage({ classes, history }) {
@@ -24,6 +24,7 @@ function AdminLoginPage({ classes, history }) {
   };
   const handleSubmit = async event => {
     try {
+      event.preventDefault();
       const res = await adminLogin({ email, password });
       if (res.status === 200) {
         history.replace("/admin/products/");
@@ -33,7 +34,6 @@ function AdminLoginPage({ classes, history }) {
     }
   };
   return (
-    <Fragment>
       <main className={classes.main}>
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -42,7 +42,7 @@ function AdminLoginPage({ classes, history }) {
           <Typography component="h1" variant="h5">
             Log in
           </Typography>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={handleSubmit}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel>Email Address</InputLabel>
               <Input
@@ -64,7 +64,7 @@ function AdminLoginPage({ classes, history }) {
               />
             </FormControl>
             <Button
-              onClick={handleSubmit}
+              type="submit"
               fullWidth
               variant="contained"
               color="primary"
@@ -75,11 +75,10 @@ function AdminLoginPage({ classes, history }) {
           </form>
         </Paper>
       </main>
-    </Fragment>
   );
 }
 AdminLoginPage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(adminLoginStyles)(AdminLoginPage);
+export default withStyles(formStyles)(AdminLoginPage);

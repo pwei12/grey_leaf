@@ -4,50 +4,31 @@ import Joi from "joi-browser";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import {
   addItemToCart,
-  getProductById,
-  // getCartList,
-  // addToCartList,
-  // togglePropInCart,
-  // updateProductList,
-  // getCartProductById
+  getProductById
 } from "../../services/productListService";
 
 function ProductDetails({ match }) {
   const id = match.params.id;
-  // const product = getProductById(match.params.id);
-  // const { id, name, price, description, imageUrl, inCart } = product;
-
-  // console.log(price, "PRICE HERERER")
+  const [data, setData] = useState({
+    name: "",
+    price: "",
+    imageUrl: "",
+    description: ""
+  });
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(1);
-  const [description, setDescription] = useState("");
   const [error, setError] = useState("");
-  useEffect(() => {
-    getProductById(id).then(res => {
-      const product = res.data;
-        const {name, price, d:description, url} = product;
-        setName(name);
-        setPrice(price);
-        setQuantity(1);
-        setImageUrl(url);
-        setDescription(description);
-        console.log("QUANTITY", quantity)
-    }).catch(err => {
-      throw new Error(err);
-    });
-    // if (getCartList().length > 0) {
-    //   const cartProduct = getCartProductById(id);
-    //   if (cartProduct) {
-    //     setQuantity(cartProduct.quantity);
-    //   }
-    // }
-    // setAddedToCart(inCart);
-  });
 
-  const quantitySchema= {
+  async function fetchProductById(id) {
+    setData(await getProductById(id));
+  }
+
+  useEffect(() => {
+    const id = match ? match.params.id : null;
+    fetchProductById(id);
+  }, []);
+
+  const quantitySchema = {
     quantity: Joi.number()
       .min(1)
       .max(50)
