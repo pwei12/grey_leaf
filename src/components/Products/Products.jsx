@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import {
-  getAllProducts,
   addToCartList,
   togglePropInCart,
   updateProductList
 } from "../../services/productListService";
+import {useAllProducts} from '../../services/hookService';
 import Product from "../Product/Product";
 
 function Products() {
-  const [productList, setProductList] = useState([]);
-  useEffect(() => {
-    getAllProducts()
-    .then(res => {
-      setProductList(res.data)
-    })
-    .catch(err => {
-      throw new Error(err);
-    });
-  }, [setProductList]);
+  const {productList, setProductList} = useAllProducts();
 
   const handleAddToCart = (id, quantity) => {
     const updatedProductList = togglePropInCart(id);
