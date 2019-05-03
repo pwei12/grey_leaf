@@ -12,7 +12,7 @@ import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { productTableStyles } from '../../styles/styles'
+import { productTableStyles } from "../../styles/styles";
 import { useAllProducts } from "../../services/hookService";
 import { deleteProduct } from "../../services/productListService";
 
@@ -76,17 +76,6 @@ function ProductTable({ classes }) {
                   <TableCell align="right">{product.bestSeller}</TableCell>
 
                   <TableCell align="center">
-                    <Fab
-                      color="secondary"
-                      aria-label="Delete"
-                      className={classes.fab}
-                      onClick={() => handleDelete(product._id)}
-                    >
-                      <DeleteIcon />
-                    </Fab>
-                  </TableCell>
-
-                  <TableCell align="center">
                     <Link to={`/admin/products/${product._id}`}>
                       <Fab
                         color="secondary"
@@ -96,6 +85,17 @@ function ProductTable({ classes }) {
                         <EditIcon />
                       </Fab>
                     </Link>
+                  </TableCell>
+
+                  <TableCell align="center">
+                    <Fab
+                      color="secondary"
+                      aria-label="Delete"
+                      className={classes.fab}
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      <DeleteIcon />
+                    </Fab>
                   </TableCell>
                 </TableRow>
               ))}
