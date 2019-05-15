@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Joi from "joi-browser";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
-import {
-  getProductById
-} from "../../services/productListService";
+import { getProductById } from "../../services/productListService";
+import { handleAddToCart, isItemAddedToCart } from "../../services/cartService";
 
 function ProductDetails({ match }) {
+  const [addedToCart, setAddedToCart] = useState(false);
   const [data, setData] = useState({
     name: "",
     price: "",
@@ -13,8 +13,8 @@ function ProductDetails({ match }) {
     description: ""
   });
   const [quantity, setQuantity] = useState(1);
-  const [addedToCart, setAddedToCart] = useState(false);
   const [error, setError] = useState("");
+  const id = match.params.id;
 
   async function fetchProductById(id) {
     const product = await getProductById(id);
@@ -22,9 +22,12 @@ function ProductDetails({ match }) {
   }
 
   useEffect(() => {
-    const id = match ? match.params.id : null;
     fetchProductById(id);
-  }, []);
+  }, [id]);
+
+  useEffect(() => {
+    if(isItemAddedToCart(id)) setAddedToCart(true);
+  }, [addedToCart]);
 
   const quantitySchema = {
     quantity: Joi.number()
@@ -48,10 +51,6 @@ function ProductDetails({ match }) {
       setError("");
       setQuantity(parseInt(inputQuantity));
     }
-  };
-
-  const handleAddToCart = event => {
-    setAddedToCart(true);
   };
 
   const { name, price, imageUrl, description } = data;
@@ -79,7 +78,7 @@ function ProductDetails({ match }) {
             <Col>
               <Button
                 type="submit"
-                onClick={handleAddToCart}
+                onClick={() => handleAddToCart(id, quantity, setAddedToCart)}
                 disabled={addedToCart}
               >
                 {addedToCart ? "Added to Cart" : "Add to Cart"}

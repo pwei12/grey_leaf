@@ -1,4 +1,3 @@
-
 const getServerUrl = path => {
   const isProdEnv = process.env.NODE_ENV === "production";
   return isProdEnv

@@ -1,27 +1,16 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import {
-  togglePropInCart,
-  updateProductList
-} from "../../services/productListService";
 import {useAllProducts} from '../../services/hookService';
 import Product from "../Product/Product";
 
 function Products() {
-  const {productList, setProductList} = useAllProducts();
-
-  const handleAddToCart = (id, quantity) => {
-    const updatedProductList = togglePropInCart(id);
-    setProductList(updatedProductList);
-    updateProductList(updatedProductList);
-  };
-
+  const {productList} = useAllProducts();
   return (
     <Container className="mt-3" fluid>
       <Row className="justify-content-md-around pb-5">
         {productList.map(product => (
           <Col xs={12} sm={12} md={6} lg={4} key={product.name}>
-            <Product product={product} handleAddToCart={handleAddToCart} />
+            <Product product={product} />
           </Col>
         ))}
       </Row>

@@ -1,13 +1,20 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
+import { handleAddToCart, isItemAddedToCart } from "../../services/cartService";
 
-function Product({ product, handleAddToCart }) {
-  const { name, price, imageUrl, _id, inCart } = product;
+function Product({ product }) {
+  const [addedToCart, setAddedToCart] = useState(false);
+  const { name, price, imageUrl, _id:id } = product;
+
+    useEffect(()=>{
+      if(isItemAddedToCart(id)) setAddedToCart(true);
+    },[addedToCart]);
+
   return (
     <Card className="mb-3">
-      <Link to={`/products/${_id}`}>
+      <Link to={`/products/${id}`}>
         <Card.Img variant="top" src={imageUrl} alt={name} />
       </Link>
 
@@ -17,10 +24,10 @@ function Product({ product, handleAddToCart }) {
         <Button
           variant="primary"
           type="button"
-          onClick={() => handleAddToCart(_id, 1)}
-          disabled={inCart}
+          onClick={() => handleAddToCart(id, 1, setAddedToCart)}
+          disabled={addedToCart}
         >
-          {inCart ? "Added to Cart" : "Add to Cart"}
+          {addedToCart ? "Added to Cart" : "Add to Cart"}
         </Button>
       </Card.Body>
     </Card>
