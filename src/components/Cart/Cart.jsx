@@ -2,76 +2,72 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Joi from "joi-browser";
 import { Container, Table, Button, Row, Col } from "react-bootstrap";
-import {
-  getCartList,
-  updateCartList,
-  getShippingFee,
-  setSubTotal,
-  sumValueInList,
-  getTotal,
-  togglePropInCart,
-  updateProductList
-} from "../../services/productListService";
+import { sumValueInList, getShippingFee } from "../../services/cartService";
 import CartTableRow from "../CartTableRow/CartTableRow";
 
 function Cart() {
   const [cartList, setCartList] = useState([]);
+  const [totalItems, setTotalItems] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
   const [error, setError] = useState({});
 
   useEffect(() => {
-    setCartList(getCartList());
-    setShippingFee(getShippingFee());
-  });
+    const itemsInCart = JSON.parse(localStorage.getItem('cart'));
+    itemsInCart.forEach(item => item.subTotal= item.quantity * item.price);
+    setCartList(itemsInCart);
+  },[]);
 
+  useEffect(() => {
+    setTotalItems(sumValueInList(cartList, "quantity"));
+    setTotalPrice(shippingFee + sumValueInList(cartList, "subTotal"));
+  },[cartList]);
+
+  useEffect(() => {
+    setShippingFee(getShippingFee(totalItems));
+  },[totalItems]);
+  
   const schema = {
     quantity: Joi.number()
-      .min(1)
-      .max(50)
-      .required()
+    .min(1)
+    .max(50)
+    .required()
   };
-
+  
   const validateQuantity = value => {
     const obj = { quantity: value };
     const { error } = Joi.validate(obj, schema);
     return error ? error.details[0].message : null;
   };
-
+  
   const handleQuantityChange = e => {
     const { id, name, value } = e.target;
     const quantity = parseInt(value);
     const errorMsg = validateQuantity(quantity);
+   
+    const updatedCartList = cartList.map(item => {
+      if (item["_id"] !== id) return item; 
+      const subTotal = quantity * item.price;
+      return { ...item, quantity, subTotal };
+    });
+
+    setCartList(updatedCartList);
+    setShippingFee(getShippingFee(totalItems));
+
     if (errorMsg) {
-      const copy = { ...error };
-      copy[name] = errorMsg;
-      setError(copy);
+      error[name] = errorMsg;
+      setError(error);
     } else {
       delete error[name];
-      const updatedCartList = cartList.map(item => {
-        if (item.id === id) {
-          const subTotal = quantity * item.price;
-          return { ...item, quantity, subTotal };
-        }
-        return item;
-      });
-      updateCartList(updatedCartList);
-      setCartList(getCartList());
-      setShippingFee(getShippingFee());
+      localStorage.setItem("cart", JSON.stringify(updatedCartList));
     }
   };
-
+  
   const handleDeleteItem = id => {
-    const updatedProductList = togglePropInCart(id);
-    updateProductList(updatedProductList);
-    const updatedCartList = getCartList().filter(item => item.id !== id);
-    updateCartList(updatedCartList);
-    setCartList(updatedCartList)
+    const updatedCartList = cartList.filter(item => item["_id"]!==id);
+    localStorage.setItem("cart", JSON.stringify(updatedCartList));
+    setCartList(updatedCartList);
   }
-
-  const totalItems = sumValueInList(cartList, "quantity");
-  const subTotal = sumValueInList(cartList, "subTotal");
-  setSubTotal(subTotal);
-  const total = getTotal();
 
   return (
     <Container>
@@ -92,6 +88,7 @@ function Cart() {
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Subtotal</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -113,7 +110,7 @@ function Cart() {
                 <td>
                   <strong>Shipping Fee (SGD)</strong>
                 </td>
-                <td className="text-right">{shippingFee}</td>
+                <td className="text-right">{shippingFee.toFixed(2)}</td>
                 <td></td>
               </tr>
               <tr>
@@ -125,14 +122,15 @@ function Cart() {
                 <td>
                   <strong>Total (SGD)</strong>
                 </td>
-                <td className="text-right">{total}</td>
+                <td className="text-right">{totalPrice.toFixed(2)}</td>
                 <td></td>
               </tr>
             </tbody>
           </Table>
+          <p>NO shipping fee if you buy more than 10 items, otherwise shipping fee is $5.</p>
           <Row className="justify-content-center pb-5">
             <Col xs="auto" sm="auto">
-              <Button variant="primary">
+              <Button variant="primary" disabled={Object.keys(error).length>0}>
                 <Link to="/cart/checkout" className="text-white link">
                   Proceed to Checkout
                 </Link>

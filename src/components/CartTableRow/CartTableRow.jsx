@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 
 function CartTableRow({
-  item: { id, name, quantity, price, subTotal },
+  item: { _id:id , name, quantity, price, subTotal },
   itemNum,
   handleQuantityChange,
   handleDeleteItem,
