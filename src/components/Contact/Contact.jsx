@@ -26,7 +26,7 @@ function Contact() {
       </a>
         .
       </p>
-      <p>WhatsApp: 019-2781910 (Cynthia)</p>
+      <p>WhatsApp: xxx-0000000</p>
     </Container>
   );
 }
