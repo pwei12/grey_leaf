@@ -72,7 +72,8 @@ export const productTableStyles = theme => ({
   export const navBarStyles = theme => ({
     root: {
       flexGrow: 1,
-      background: "#000066"
+      background: "#000066",
+      width: "100%"
     },
     typography: {
       flexGrow: 1
