@@ -21,7 +21,7 @@ function Cart() {
   useEffect(() => {
     setTotalItems(sumValueInList(cartList, "quantity"));
     setTotalPrice(shippingFee + sumValueInList(cartList, "subTotal"));
-  },[cartList]);
+  },[cartList, shippingFee]);
 
   useEffect(() => {
     setShippingFee(getShippingFee(totalItems));
