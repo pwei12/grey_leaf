@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Joi from "joi-browser";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
-import { getProductById } from "../../services/productListService";
+import { fetchProductById } from "../../services/productListService";
 import { handleAddToCart, isItemAddedToCart } from "../../services/cartService";
 
 function ProductDetails({ match }) {
@@ -16,18 +16,20 @@ function ProductDetails({ match }) {
   const [error, setError] = useState("");
   const id = match.params.id;
 
-  async function fetchProductById(id) {
-    const product = await getProductById(id);
-    setData(product.data);
+  const getDataFromLocalStorage = id => {
+    const data = JSON.parse(localStorage.getItem('cart')).filter(item => item["_id"]===id);
+    setData(data[0]);
+    setQuantity(data[0].quantity);
   }
 
   useEffect(() => {
-    fetchProductById(id);
-  }, [id]);
-
-  useEffect(() => {
-    if(isItemAddedToCart(id)) setAddedToCart(true);
-  }, [addedToCart]);
+    if(isItemAddedToCart(id)) {
+      setAddedToCart(true);
+      getDataFromLocalStorage(id);
+    } else {
+      fetchProductById(id, setData);
+    }
+  }, [id, addedToCart]);
 
   const quantitySchema = {
     quantity: Joi.number()
@@ -42,14 +44,21 @@ function ProductDetails({ match }) {
     return error ? error.details[0].message : null;
   };
 
-  const handleQuantityChange = event => {
-    const inputQuantity = event.target.value;
+  const handleQuantityChange = e => {
+    const inputQuantity = parseInt(e.target.value);
     const errorMsg = validateQuantity(inputQuantity);
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const updatedCart = cart.map(item => {
+      if (item["_id"] !== id) return item; 
+      return { ...item, inputQuantity };
+    });
+
+    setQuantity(inputQuantity);
     if (errorMsg) {
       setError(errorMsg);
     } else {
       setError("");
-      setQuantity(parseInt(inputQuantity));
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
   };
 
@@ -62,7 +71,7 @@ function ProductDetails({ match }) {
         </Col>
         <Col xs={12} sm={6} md={8} lg={8}>
           <h3>{name}</h3>
-          <p>${price}</p>
+          <p>${parseFloat(price).toFixed(2)}</p>
           <p>{description}</p>
 
           <label htmlFor="quantity">Quantity:</label>
@@ -78,7 +87,7 @@ function ProductDetails({ match }) {
             <Col>
               <Button
                 type="submit"
-                onClick={() => handleAddToCart(id, quantity, setAddedToCart)}
+                onClick={() => handleAddToCart(data, quantity, setAddedToCart)}
                 disabled={addedToCart}
               >
                 {addedToCart ? "Added to Cart" : "Add to Cart"}

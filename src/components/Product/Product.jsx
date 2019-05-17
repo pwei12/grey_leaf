@@ -6,7 +6,7 @@ import { handleAddToCart, isItemAddedToCart } from "../../services/cartService";
 
 function Product({ product }) {
   const [addedToCart, setAddedToCart] = useState(false);
-  const { name, price, imageUrl, _id:id } = product;
+  const {name, price, imageUrl, _id:id} = product;
 
     useEffect(()=>{
       if(isItemAddedToCart(id)) setAddedToCart(true);
@@ -24,7 +24,7 @@ function Product({ product }) {
         <Button
           variant="primary"
           type="button"
-          onClick={() => handleAddToCart(id, 1, setAddedToCart)}
+          onClick={() => handleAddToCart(product, 1, setAddedToCart)}
           disabled={addedToCart}
         >
           {addedToCart ? "Added to Cart" : "Add to Cart"}
