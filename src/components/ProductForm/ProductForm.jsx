@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { formStyles } from "../../styles/styles";
 import {
-  getProductById,
+  fetchProductById,
   updateProduct,
   addNewProduct
 } from "../../services/productListService";
@@ -20,18 +20,9 @@ function ProductForm({ match, history, classes }) {
     bestSeller: ""
   });
 
-  async function fetchProductById(id) {
-    try {
-      const product = await getProductById(id);
-      setData(product.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   useEffect(() => {
     const id = match ? match.params.id : null;
-    fetchProductById(id);
+    fetchProductById(id, setData);
   }, []);
 
   const handleInputChange = event => {

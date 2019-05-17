@@ -25,8 +25,13 @@ export async function getBestSellers() {
   return bestSellers;
 }
 
-export function getProductById(id) {
-  return axios.get(getServerUrl(`api/v1/products/${id}`));
+export const fetchProductById = async(id, setter) => {
+  try {
+    const product = await axios.get(getServerUrl(`api/v1/products/${id}`));
+    setter(product.data);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export function addNewProduct(data) {
