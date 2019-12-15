@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Joi from "joi-browser";
 import { Container, Table, Button, Row, Col } from "react-bootstrap";
-import { sumValueInList, getShippingFee } from "../../services/cartService";
+import { sumValueInList, getShippingFee, sumPrice } from "../../services/cartService";
 import CartTableRow from "../CartTableRow/CartTableRow";
 
 function Cart() {
@@ -20,11 +20,12 @@ function Cart() {
 
   useEffect(() => {
     setTotalItems(sumValueInList(cartList, "quantity"));
-    setTotalPrice(shippingFee + sumValueInList(cartList, "subTotal"));
+    setTotalPrice(shippingFee + sumPrice());
   },[cartList, shippingFee]);
 
   useEffect(() => {
-    setShippingFee(getShippingFee(totalItems));
+  debugger;
+  setShippingFee(getShippingFee());
   },[totalItems]);
   
   const schema = {
@@ -52,7 +53,7 @@ function Cart() {
     });
 
     setCartList(updatedCartList);
-    setShippingFee(getShippingFee(totalItems));
+    setShippingFee(getShippingFee());
 
     if (errorMsg) {
       error[name] = errorMsg;

@@ -48,10 +48,15 @@ function ProductDetails({ match }) {
     const inputQuantity = parseInt(e.target.value);
     const errorMsg = validateQuantity(inputQuantity);
     const cart = JSON.parse(localStorage.getItem("cart"));
-    const updatedCart = cart.map(item => {
-      if (item["_id"] !== id) return item; 
-      return { ...item, inputQuantity };
-    });
+    let updatedCart;
+    if(cart) {
+       updatedCart = cart.map(item => {
+        if (item["_id"] !== id) return item; 
+        return { ...item, inputQuantity };
+      });
+    } else {
+      updatedCart = {...data, quantity}
+    }
 
     setQuantity(inputQuantity);
     if (errorMsg) {

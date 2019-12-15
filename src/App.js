@@ -11,7 +11,7 @@ import Checkout from "../src/components/Checkout/Checkout";
 import Footer from "../src/components/Footer/Footer";
 import ProductTable from "../src/components/ProductTable/ProductTable";
 import ProductForm from "../src/components/ProductForm/ProductForm";
-import AdminLoginPage from "../src/components/Login/AdminLoginPage"
+import AdminLoginPage from "../src/components/Login/AdminLoginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
